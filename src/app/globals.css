@@ -1,82 +1,56 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-:root {
-  --background: #090A10;
-  --foreground: #F8FAFC;
-}
 
 @layer base {
+  :root {
+    --bg: #fafafa;
+    --text: #111111;
+    --text-muted: #666666;
+    --border: #e5e5e5;
+    --accent: #000000;
+  }
+
+  .dark {
+    --bg: #0c0c0c;
+    --text: #ededed;
+    --text-muted: #888888;
+    --border: #222222;
+    --accent: #ffffff;
+  }
+
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans);
-    overflow: hidden;
-    user-select: none;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: #333333;
+    color: #ffffff;
   }
 }
 
-/* Glassmorphism Styles */
-.glass-panel {
-  background: rgba(18, 20, 32, 0.65);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+/* Minimalist Link Hover Animation */
+.link-hover {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.3;
+  transition: opacity 0.15s ease;
 }
 
-.glass-dock {
-  background: rgba(15, 18, 28, 0.75);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-/* Custom Glass Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
+.link-hover:hover::after {
+  opacity: 1;
 }

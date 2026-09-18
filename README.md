@@ -1,4 +1,4 @@
-# MehdiOS — Software & Systems Engineer Glassmorphism Desktop Portfolio
+# Mehdi — Software Engineer Portfolio
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,14 +8,17 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-An immersive, interactive **Desktop OS & Glassmorphism Web Portfolio (MehdiOS)** built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**. Featuring a full multi-window management engine, interactive POSIX bash terminal, ambient mesh gradient wallpapers, and Windows/macOS-inspired frosted glass dock.
+A clean, minimalist personal portfolio designed with restraint, typography, and focus. Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**.
 
 ---
 
-## 🪟 Architecture & Key Features
+## 📐 Key Features
 
-* **🖥️ Interactive Window Manager**: Complete multi-tasking desktop with draggable/centered frosted glass windows (`backdrop-blur-2xl bg-white/10 border border-white/20`), active `z-index` layering, Minimize, Maximize, and Close window controls.
-* **💻 Interactive POSIX Terminal (`Terminal.sh`)**: Real working command line supporting `help`, `about`, `projects`, `c-specs`, `skills`, `neofetch`, `contact`, `whoami`, `clear`, and `ls`.
+* **✨ Restrained & Minimal Design**: Zero unnecessary widgets, zero nested cards, pure typographical focus on what matters.
+* **🌐 Bilingual Support (FR / EN)**: Clean client-side language switch.
+* **🚀 Static Export Architecture (`output: 'export'`)**: Fast, lightweight static pre-rendering deployed to **GitHub Pages** via GitHub Actions.
+* **📂 Selected Projects**: Direct presentation of key engineering work (C & POSIX network server, custom Unix shell & allocator, Next.js platform) with links to GitHub.
+* **⏳ Background & Timeline**: Clear trajectory of academic studies and engineering projects.
 * **📁 Projects File Explorer**: Finder/Explorer style window with categorized folder navigation, project search bar, tech badges, and direct GitHub links.
 * **📊 Task Manager (Skills & Resources)**: CPU-like resource meters for technical competencies across C, TypeScript, Next.js, POSIX Sockets, Linux internals, and DevOps.
 * **✨ Ambient Mesh Wallpapers**: Real-time wallpaper switcher cycling between *Deep Aurora*, *Cyberpunk Night*, *Cosmic Glass*, and *Obsidian Dark*.
