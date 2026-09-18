@@ -15,13 +15,13 @@ export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-neutral-800 selection:text-white relative">
-      {/* Background Grid Pattern (Swiss Subtle Rhythm) */}
+    <div className="min-h-screen bg-[#FDFBF7] dark:bg-[#0D0E12] text-black dark:text-white relative transition-colors duration-200">
+      {/* Background Dot Grid */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        className="fixed inset-0 pointer-events-none opacity-[0.05] dark:opacity-[0.07] z-0"
         style={{
-          backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`,
-          backgroundSize: "24px 24px"
+          backgroundImage: `radial-gradient(circle, currentColor 1.5px, transparent 1.5px)`,
+          backgroundSize: "28px 28px"
         }}
       />
 

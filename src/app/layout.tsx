@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mehdi — Software & Systems Engineer Portfolio",
   description:
-    "Portfolio of Mehdi: Fullstack Web Developer, C & Systems Programmer, Networking & UI/UX Design. Minimalist Swiss Edition.",
+    "Portfolio of Mehdi: Fullstack Web Developer, C & Systems Programmer, Networking & UI/UX Design. Modern Neo-Brutalist Edition.",
   keywords: [
     "Mehdi",
     "Portfolio",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     "C Programming",
     "Networking",
     "POSIX Sockets",
-    "Swiss Design",
+    "Neo-Brutalism",
     "TypeScript",
   ],
   authors: [{ name: "Mehdi", url: "https://github.com/mehddium" }],
@@ -48,10 +49,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth dark`}
     >
-      <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-100 selection:bg-neutral-800 selection:text-white">
-        <LanguageProvider>{children}</LanguageProvider>
+      <body className="min-h-full flex flex-col antialiased">
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

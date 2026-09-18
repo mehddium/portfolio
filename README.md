@@ -8,13 +8,14 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-A modern, high-performance personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, following the **Swiss International Typographic Style** (minimalist, high-contrast monochrome design, mathematical grid rhythm, and accessible interactions).
+A modern, high-performance personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, styled in an **Energizing Neo-Brutalist Design** (high-contrast borders, mechanical push-down interactions, retro badge tags, and Dark/Light theme switching).
 
 ---
 
 ## 📐 Architecture & Key Features
 
-* **🎨 Swiss Typographic Aesthetic**: High-contrast monochrome dark mode (`oklch` / `neutral-950`), strong grotesque typography, monospace metadata, subtle grid rhythm, and distraction-free layout.
+* **🎨 Neo-Brutalist Aesthetic**: Solid bold borders (`border-2 border-black`), mechanical offset box shadows (`shadow-[4px_4px_0px_0px_#000]`), vibrant technical accents (Cyber Yellow `#FFE600`, Cyan `#00F0FF`, Mint `#4ADE80`, Coral `#FF8E3C`), and interactive tactile buttons.
+* **🌓 Dual Theme Switcher (Dark & Light)**: Instant toggle between Warm Canvas light mode and deep Charcoal dark mode.
 * **🌐 Full Bilingual Support (FR / EN)**: Instant client-side language toggle between French and English with local storage persistence.
 * **🚀 Static Export Architecture (`output: 'export'`)**: Fully pre-rendered static HTML/CSS/JS deployed automatically to **GitHub Pages** via GitHub Actions.
 * **📂 Interactive Projects Showcase**: Filterable project gallery (`Web Fullstack`, `C & Systems`, `Networking & Tools`) with source code links, tech stack badges, and technical highlights.

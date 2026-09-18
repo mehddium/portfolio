@@ -8,68 +8,72 @@ import { History, GraduationCap, Briefcase, Award } from "lucide-react";
 export default function TimelineSection() {
   const { lang } = useLanguage();
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case "education":
-        return <GraduationCap className="w-4 h-4 text-neutral-300" />;
-      case "experience":
-        return <Briefcase className="w-4 h-4 text-neutral-300" />;
-      default:
-        return <Award className="w-4 h-4 text-neutral-300" />;
-    }
+  const getStepColor = (index: number) => {
+    const colors = ["bg-[#FFE600]", "bg-[#00F0FF]", "bg-[#4ADE80]", "bg-[#FF8E3C]"];
+    return colors[index % colors.length];
   };
 
   return (
-    <section id="experience" className="py-20 border-b border-neutral-800/60">
-      {/* Section Title */}
+    <section id="experience" className="py-20 border-b-2 border-black dark:border-zinc-800">
+      {/* Section Header */}
       <div className="mb-12">
-        <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-widest mb-2">
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black text-white dark:bg-white dark:text-black font-mono font-black text-xs uppercase mb-3 shadow-[2px_2px_0px_0px_#00F0FF]">
           <History className="w-3.5 h-3.5" />
           <span>02 // {lang === "fr" ? "Parcours & Formation" : "Background & Timeline"}</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-neutral-100">
-          {lang === "fr" ? "Expériences & Formation Académique" : "Experience & Academic Background"}
+        <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-black dark:text-white uppercase">
+          {lang === "fr" ? "Expériences & Formation" : "Experience & Education"}
         </h2>
       </div>
 
-      {/* Timeline List */}
-      <div className="relative border-l border-neutral-800 ml-3 sm:ml-4 space-y-10">
+      {/* Timeline Steps */}
+      <div className="space-y-8">
         {portfolioData.timeline.map((item, index) => {
           const t = item.translations[lang];
 
           return (
-            <div key={item.id} className="relative pl-8 sm:pl-10 group">
-              {/* Timeline node dot */}
-              <div className="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center group-hover:border-neutral-400 transition-colors">
-                {getTypeIcon(item.type)}
-              </div>
-
-              {/* Card Container */}
-              <div className="p-6 rounded-lg bg-neutral-900/30 border border-neutral-800/80 hover:border-neutral-700 transition-colors">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2 font-mono text-xs">
-                  <span className="font-bold text-neutral-400">{item.period}</span>
-                  <span className="text-[11px] px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-400 uppercase tracking-wider w-fit">
+            <div
+              key={item.id}
+              className="flex flex-col md:flex-row gap-6 p-6 bg-white dark:bg-[#14151B] border-2 border-black dark:border-zinc-700 shadow-[5px_5px_0px_0px_#000] dark:shadow-[5px_5px_0px_0px_#000]"
+            >
+              {/* Left Badge */}
+              <div className="flex md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-56 shrink-0">
+                <div
+                  className={`w-10 h-10 border-2 border-black text-black font-mono font-black text-base flex items-center justify-center shadow-[2px_2px_0px_0px_#000] ${getStepColor(
+                    index
+                  )}`}
+                >
+                  0{index + 1}
+                </div>
+                <div>
+                  <span className="font-mono text-xs font-black block text-black dark:text-white">
+                    {item.period}
+                  </span>
+                  <span className="inline-block mt-1 font-mono text-[10px] font-bold px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800 text-black dark:text-zinc-300 border border-black dark:border-zinc-700 uppercase">
                     {item.type}
                   </span>
                 </div>
+              </div>
 
-                <h3 className="text-lg font-bold text-neutral-100 tracking-tight mb-1">
+              {/* Right Content */}
+              <div className="flex-1">
+                <h3 className="text-xl font-black text-black dark:text-white uppercase tracking-tight mb-1">
                   {t.title}
                 </h3>
-                <p className="text-xs font-mono text-neutral-400 mb-4 font-medium">
+                <p className="text-xs font-mono font-bold text-zinc-500 dark:text-[#FFE600] mb-3">
                   {t.institution}
                 </p>
 
-                <p className="text-sm text-neutral-400 leading-relaxed mb-4 font-light">
+                <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4 font-normal">
                   {t.description}
                 </p>
 
-                {/* Skills used */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-800/50">
+                {/* Skills Chips */}
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t-2 border-zinc-200 dark:border-zinc-800">
                   {t.skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-950 border border-neutral-800 text-neutral-400"
+                      className="text-[11px] font-mono font-bold px-2 py-0.5 bg-[#FDFBF7] dark:bg-[#0D0E12] border border-black dark:border-zinc-700 text-black dark:text-zinc-200"
                     >
                       {skill}
                     </span>
