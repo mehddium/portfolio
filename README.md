@@ -1,4 +1,4 @@
-# Mehdi — Software & Systems Engineer Portfolio
+# MehdiOS — Software & Systems Engineer Glassmorphism Desktop Portfolio
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,14 +8,18 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-A modern, high-performance personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, styled in an **Energizing Neo-Brutalist Design** (high-contrast borders, mechanical push-down interactions, retro badge tags, and Dark/Light theme switching).
+An immersive, interactive **Desktop OS & Glassmorphism Web Portfolio (MehdiOS)** built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**. Featuring a full multi-window management engine, interactive POSIX bash terminal, ambient mesh gradient wallpapers, and Windows/macOS-inspired frosted glass dock.
 
 ---
 
-## 📐 Architecture & Key Features
+## 🪟 Architecture & Key Features
 
-* **🎨 Neo-Brutalist Aesthetic**: Solid bold borders (`border-2 border-black`), mechanical offset box shadows (`shadow-[4px_4px_0px_0px_#000]`), vibrant technical accents (Cyber Yellow `#FFE600`, Cyan `#00F0FF`, Mint `#4ADE80`, Coral `#FF8E3C`), and interactive tactile buttons.
-* **🌓 Dual Theme Switcher (Dark & Light)**: Instant toggle between Warm Canvas light mode and deep Charcoal dark mode.
+* **🖥️ Interactive Window Manager**: Complete multi-tasking desktop with draggable/centered frosted glass windows (`backdrop-blur-2xl bg-white/10 border border-white/20`), active `z-index` layering, Minimize, Maximize, and Close window controls.
+* **💻 Interactive POSIX Terminal (`Terminal.sh`)**: Real working command line supporting `help`, `about`, `projects`, `c-specs`, `skills`, `neofetch`, `contact`, `whoami`, `clear`, and `ls`.
+* **📁 Projects File Explorer**: Finder/Explorer style window with categorized folder navigation, project search bar, tech badges, and direct GitHub links.
+* **📊 Task Manager (Skills & Resources)**: CPU-like resource meters for technical competencies across C, TypeScript, Next.js, POSIX Sockets, Linux internals, and DevOps.
+* **✨ Ambient Mesh Wallpapers**: Real-time wallpaper switcher cycling between *Deep Aurora*, *Cyberpunk Night*, *Cosmic Glass*, and *Obsidian Dark*.
+* **🚀 Fluent Glass Dock & Start Menu**: Bottom taskbar with running app indicators, live system clock, FR/EN language toggle, and Windows-style Start Menu.
 * **🌐 Full Bilingual Support (FR / EN)**: Instant client-side language toggle between French and English with local storage persistence.
 * **🚀 Static Export Architecture (`output: 'export'`)**: Fully pre-rendered static HTML/CSS/JS deployed automatically to **GitHub Pages** via GitHub Actions.
 * **📂 Interactive Projects Showcase**: Filterable project gallery (`Web Fullstack`, `C & Systems`, `Networking & Tools`) with source code links, tech stack badges, and technical highlights.
