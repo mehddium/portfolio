@@ -1,68 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Product+Sans:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: 'Product Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 :root {
-  --bg: #090A0E;
-  --text: #F4F4F6;
-  --text-muted: #8E9099;
-  --border: rgba(255, 255, 255, 0.08);
+  --bg: #07080b;
+  --bg-surface: #0e1017;
+  --bg-surface-elevated: #151822;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(255, 255, 255, 0.22);
+  --text-primary: #f0f1f5;
+  --text-secondary: #8b90a0;
+  --text-tertiary: #525866;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    background-color: var(--bg);
-    color: var(--text);
+  * {
+    border-color: var(--border-hairline);
   }
 
-  body {
+  html, body {
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--text-primary);
     font-family: var(--font-sans);
     letter-spacing: -0.015em;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: #ffffff;
   }
 }
 
-.cinematic-slide {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  min-height: 100vh;
+/* Horizontal Track System */
+.horizontal-canvas {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
   width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Individual Bay Layout */
+.horizontal-bay {
+  flex-shrink: 0;
+  height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  padding-top: 5rem;
+  padding-bottom: 4.5rem;
+  padding-left: clamp(2rem, 5vw, 4.5rem);
+  padding-right: clamp(2rem, 5vw, 4.5rem);
+  border-right: 1px solid var(--border-hairline);
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Custom Scrollbar for horizontal scrolling */
+.horizontal-canvas::-webkit-scrollbar {
+  height: 4px;
+}
+.horizontal-canvas::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
+.horizontal-canvas::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+.horizontal-canvas::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Technical Blueprint Grid Accent */
+.bg-grid-blueprint {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Subtle corner crosshairs */
+.crosshair-corner {
   position: relative;
 }
-
-/* Subtle cinematic glows */
-.glow-blue {
-  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
+.crosshair-corner::before {
+  content: "+";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+  line-height: 1;
 }
 
-.glow-emerald {
-  background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.12) 0%, transparent 60%);
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.95); }
 }
 
-.glow-purple {
-  background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.12) 0%, transparent 60%);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
