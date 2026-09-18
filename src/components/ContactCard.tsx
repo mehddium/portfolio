@@ -6,7 +6,7 @@ import { portfolioData } from "@/data/portfolioData";
 import { Mail, Copy, Check, ArrowUpRight, MessageSquareCode } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
 
-export default function M3Contact() {
+export default function ContactCard() {
   const { lang } = useLanguage();
   const [copied, setCopied] = useState(false);
 
@@ -19,15 +19,15 @@ export default function M3Contact() {
   };
 
   return (
-    <section id="contact" className="py-16">
+    <div className="space-y-6 animate-in fade-in duration-200">
       <div className="rounded-[32px] bg-[var(--m3-surface-container-low)] border border-[var(--m3-outline-variant)]/70 p-8 sm:p-12 text-center space-y-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--m3-secondary-container)] text-[var(--m3-on-secondary-container)] text-xs font-semibold">
           <MessageSquareCode className="w-3.5 h-3.5 text-[#0B57D0] dark:text-[#A8C7FA]" />
-          <span>04 // Contact</span>
+          <span>Contact & Opportunités</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--m3-on-surface)]">
-          {lang === "fr" ? "Démarrons une collaboration" : "Let's Build Together"}
+          {lang === "fr" ? "Démarrons une collaboration" : "Let's Build Something Together"}
         </h2>
 
         <p className="text-base text-[var(--m3-on-surface-variant)] font-normal max-w-md mx-auto leading-relaxed">
@@ -69,6 +69,6 @@ export default function M3Contact() {
           </a>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

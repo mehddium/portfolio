@@ -1,4 +1,4 @@
-# Mehdi — Software Engineer Portfolio (Google Material Design 3)
+# Mehdi — Software & Systems Engineer Portfolio (Google Material Design 3 Workspace)
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,19 +8,19 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-A modern, high-standard personal portfolio designed according to **Google's Material Design 3 (Material You / M3)** system. Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, featuring **Google Sans / Roboto Flex** typography, tonal surface containers, M3 filter chips, and extended FABs.
+A modern, high-standard personal engineering workspace designed according to **Google's Material Design 3 (Material You / M3)** system. Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, featuring **Google Sans Flex / Roboto Flex** typography, a **Left Navigation Rail (Desktop) / Bottom Bar (Mobile)**, and a **Master-Detail Projects Inspector Workspace**.
 
 ---
 
-## 📐 Key Features
+## 📐 Architecture & Key Features
 
-* **🎨 Material Design 3 (M3 / Material You)**: Dynamic tonal palettes, surface container hierarchy (`surface`, `surface-container-low`, `surface-container-high`), Google 4-color accents, and pill shapes.
+* **🧭 M3 Navigation Rail & Workspace Layout**: Left vertical navigation rail on desktop with destination pills, top Extended FAB, language and theme toggles, and mobile bottom navigation bar.
+* **📂 Master-Detail Project Inspector**: Interactive two-column workspace allowing granular inspection of project specifications, socket flows, C memory models, and live links.
 * **🔤 Google Sans Flex & JetBrains Mono**: Official Google typography pairing for headings, prose, and code metadata.
-* **🌓 Dual Tonal Theme Support (M3 Light & Dark)**: Full support for Material 3 Light Surface and Deep Slate Dark Surface.
+* **🎨 Dynamic Tonal Surfaces & Google 4-Color Accents**: Strict M3 surface containment (`surface`, `surface-container-low`, `surface-container-high`).
+* **🌓 Dual Theme Support (M3 Light & Dark)**: Full support for Material 3 Light Surface and Deep Slate Dark Surface.
 * **🌐 Bilingual Support (FR / EN)**: Instant client-side language switcher with local storage persistence.
 * **🚀 Static Export Architecture (`output: 'export'`)**: Ultra-fast static pre-rendered build deployed automatically to **GitHub Pages** via GitHub Actions.
-* **📂 Selected Projects Showcase**: M3 Filter Chips with categorized project cards (Web Fullstack, C & Systems, Networking & Tools) and live demo links.
-* **⏳ Education & Experience Timeline**: Clear chronological trajectory with M3 surface chips and indicators.
 * **📄 Printable CV Dialog**: Full-screen M3 Dialog with printable preview and PDF export.
 * **📁 Projects File Explorer**: Finder/Explorer style window with categorized folder navigation, project search bar, tech badges, and direct GitHub links.
 * **📊 Task Manager (Skills & Resources)**: CPU-like resource meters for technical competencies across C, TypeScript, Next.js, POSIX Sockets, Linux internals, and DevOps.

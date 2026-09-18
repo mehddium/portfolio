@@ -3,23 +3,37 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import { Cpu } from "lucide-react";
+import { Cpu, Code2, Network, ShieldCheck, Zap } from "lucide-react";
 
-export default function M3Skills() {
+export default function SkillsDashboard() {
   const { lang } = useLanguage();
 
+  const getGroupIcon = (key: string) => {
+    switch (key) {
+      case "languages":
+        return <Code2 className="w-4 h-4 text-[#4285F4]" />;
+      case "web":
+        return <Zap className="w-4 h-4 text-[#FBBC04]" />;
+      case "systems":
+        return <Cpu className="w-4 h-4 text-[#34A853]" />;
+      default:
+        return <ShieldCheck className="w-4 h-4 text-[#EA4335]" />;
+    }
+  };
+
   return (
-    <section id="skills" className="py-12">
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--m3-secondary-container)] text-[var(--m3-on-secondary-container)] text-xs font-semibold mb-2">
+    <div className="space-y-6 animate-in fade-in duration-200">
+      <div className="pb-4 border-b border-[var(--m3-outline-variant)]/60">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--m3-secondary-container)] text-[var(--m3-on-secondary-container)] text-xs font-semibold mb-1">
           <Cpu className="w-3.5 h-3.5 text-[#0B57D0] dark:text-[#A8C7FA]" />
-          <span>03 // {lang === "fr" ? "Matrice Technique" : "Technical Matrix"}</span>
+          <span>Matrice Technique // Systems & Fullstack</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[var(--m3-on-surface)]">
-          {lang === "fr" ? "Compétences & Technologies" : "Skills & Engineering Stack"}
+        <h2 className="text-2xl font-bold text-[var(--m3-on-surface)]">
+          {lang === "fr" ? "Compétences & Architecture Système" : "Technical Stack & Architecture"}
         </h2>
       </div>
 
+      {/* Grid of 4 Tonal Category Panels */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {portfolioData.skillGroups.map((group) => (
           <div
@@ -27,9 +41,14 @@ export default function M3Skills() {
             className="p-6 sm:p-7 rounded-[28px] bg-[var(--m3-surface-container-low)] border border-[var(--m3-outline-variant)]/70 space-y-4"
           >
             <div className="flex items-center justify-between border-b border-[var(--m3-outline-variant)]/60 pb-3">
-              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--m3-on-surface)]">
-                {group.translations[lang]}
-              </h3>
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-[var(--m3-surface)] border border-[var(--m3-outline-variant)]/60">
+                  {getGroupIcon(group.nameKey)}
+                </div>
+                <h3 className="font-bold text-sm text-[var(--m3-on-surface)] uppercase tracking-wider">
+                  {group.translations[lang]}
+                </h3>
+              </div>
               <span className="text-[11px] font-mono text-[var(--m3-on-surface-variant)]">
                 {group.skills.length} modules
               </span>
@@ -57,6 +76,6 @@ export default function M3Skills() {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
