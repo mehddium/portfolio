@@ -1,126 +1,62 @@
-<div align="center">
+# Mehdi — Systems & Web Engineer
 
-# 🏛️ Mehdi — Software & Systems Engineer
-### *Linear Horizontal Architectural Portfolio*
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Bun](https://img.shields.io/badge/Bun-1.4-fbf0df?style=flat&logo=bun)](https://bun.sh/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Active-brightgreen?style=flat&logo=github)](https://mehddium.github.io/portfolio/)
 
-[![Next.js 15](https://img.shields.io/badge/Next.js-15.x-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-22C55E?style=for-the-badge&logo=githubpages&logoColor=white)](https://mehddium.github.io/portfolio/)
-[![License](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)](LICENSE)
+> **Live Production**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-<br/>
-
-> **🌐 Live Production Website**: **[https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)**
-
-<br/>
-
-```
-┌──────────────┬────────────────────────┬─────────────────────┬─────────────────┬──────────────┐
-│ [00] SPEC    │ [01] POSIX & SYSTEMS   │ [02] REACTIVE WEB   │ [03] SPECTRUM   │ [04] DISPATCH│
-│ Identity &   │ Multi-thread TCP C     │ Fullstack Next.js   │ Matrix & Journey│ Direct Action│
-│ Manifesto    │ & Unix Allocator       │ & Design System     │ Capabilities    │ & PDF Resume │
-└──────────────┴────────────────────────┴─────────────────────┴─────────────────┴──────────────┘
- ◄────────────────────── CONTINUOUS HORIZONTAL CANVAS (X-AXIS) ────────────────────────►
-```
-
-</div>
+Minimalist editorial portfolio presenting technical projects in low-level POSIX C programming and modern reactive web development.
 
 ---
 
-## 🧭 Spatial Architecture & Modular Bays
+## Architecture & Layout
 
-The portfolio breaks away from standard vertical landing pages by presenting an **editorial horizontal canvas** (*L-Strip Engine*):
-
-| Bay Index | Identifier | Focus & Engineering Deliverables |
-| :---: | :--- | :--- |
-| **00** | **SPEC // Identity** | Dual-discipline manifesto, live status indicators, core engineering pillars. |
-| **01** | **LAB // POSIX & Systems** | Multi-threaded TCP network server, Unix shell & dynamic memory allocator (`sbrk`/`mmap`), packet sniffer. |
-| **02** | **ARCH // Reactive Web** | Modular fullstack platform in Next.js 15 App Router, TypeScript, and Swiss typographic design system. |
-| **03** | **SPECTRUM // Matrix & Trajectory** | 4-Domain capability matrix (Languages, Web, Systems, Tools) & interactive chronological journey. |
-| **04** | **DISPATCH // Connect** | Direct 1-click clipboard dispatch, live GitHub repository links, and printable CV preview. |
+- **Light Editorial Interface**: High-contrast typography, generous whitespace, boundary-less open layouts (no rounded cards or boilerplate containers).
+- **Smooth Vertical Flow**: Natural single-column layout optimized for reading and scanning.
+- **Technical Vector Schematics**: Visual architectural representations of socket lifecycles, Unix process pipelines, and Next.js data flows.
+- **Bilingual (FR / EN)**: Instant language switcher with localStorage state persistence.
+- **Static Export**: Zero-dependency static build (`output: 'export'`) automatically deployed via GitHub Actions to GitHub Pages.
 
 ---
 
-## ⚡ Interaction & Navigation Engine
+## Selected Projects
 
-- 🖱️ **Natural Wheel-to-Horizontal Mapping**: Smooth vertical mouse-wheel conversion to X-axis translation with zero jank.
-- ⌨️ **Keyboard Controls**: Full arrow key (`←` / `→`), `PageDown` / `PageUp`, `Home` / `End` navigation.
-- 📏 **Linear Scrubber & HUD**: Real-time coordinate tracking (`[BAY: 01 / 04]`, `[POS: 42%]`) and instant bay jumping.
-- 🌐 **Instant Bilingual Support**: Live toggle between French (**FR**) and English (**EN**) with persistent storage.
-- 📄 **Integrated Spec / CV Modal**: Clean printable curriculum vitae formatted for screen and paper PDF export.
-
----
-
-## 🛠️ Technology Stack
-
-<details open>
-<summary><b>Component Architecture & Tooling</b></summary>
-
-```
-portfolio/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions automated static build & Pages deployment
-├── public/                     # Static assets & icons
-├── src/
-│   ├── app/
-│   │   ├── globals.css         # Horizontal canvas, blueprint grids & typography
-│   │   ├── layout.tsx          # Root layout & bilingual metadata
-│   │   └── page.tsx            # Horizontal canvas orchestrator & interaction listeners
-│   ├── components/
-│   │   ├── bays/
-│   │   │   ├── BayIdentity.tsx         # Bay 00 — Identity & manifesto
-│   │   │   ├── BaySystems.tsx          # Bay 01 — POSIX C, Sockets & Systems Lab
-│   │   │   ├── BayWeb.tsx              # Bay 02 — Next.js 15 & Fullstack Architecture
-│   │   │   ├── BayMatrixTrajectory.tsx # Bay 03 — Capability Matrix & Timeline
-│   │   │   └── BayConnect.tsx          # Bay 04 — Direct Dispatch & Contact
-│   │   ├── LinearHUD.tsx       # Top technical HUD & live coordinates
-│   │   ├── LinearScrubber.tsx  # Bottom timeline ruler & bay navigation
-│   │   ├── ResumeModal.tsx     # Printable CV / PDF specification modal
-│   │   └── Icons.tsx           # Scalable custom SVG symbols
-│   ├── context/
-│   │   └── LanguageContext.tsx # EN/FR bilingual state provider
-│   └── data/
-│       └── portfolioData.ts    # Centralized bilingual data source
-├── next.config.ts              # Static export configuration (`output: 'export'`)
-└── package.json
-```
-
-</details>
+- **Concurrent TCP Server & Client**: Multi-threaded POSIX network server in C (RFC-compliant, `pthreads`, `select`/`poll` multiplexing).
+- **Custom Unix Shell & Allocator**: Process lifecycle engine (`fork`, `execvp`, pipes) and dynamic heap allocator (`sbrk`/`mmap`).
+- **Modular Fullstack Platform**: Reactive application in Next.js 15 App Router, TypeScript, and PostgreSQL.
+- **Raw Packet Sniffer**: Low-level packet capture and binary protocol decoding utility.
 
 ---
 
-## 🚀 Local Development & Build
+## Tech Stack
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18+) or [Bun](https://bun.sh/)
+| Domain | Technologies |
+| :--- | :--- |
+| **Languages** | C (C99/C11), TypeScript, JavaScript (ESNext), Python, SQL, Bash |
+| **Systems & Network** | Linux/POSIX APIs, TCP/IP, Sockets, pthreads, GDB, Valgrind |
+| **Web Architecture** | Next.js 15 (App Router), React 19, Tailwind CSS v4, Node.js, Bun |
+| **Tooling & Workflow** | Git, GitHub Actions, Make, Docker, Wireshark, Figma |
 
-### Quickstart
+---
+
+## Local Development
 
 ```bash
-# 1. Clone repository
-git clone https://github.com/mehddium/portfolio.git
-cd portfolio
+# Install dependencies
+bun install
 
-# 2. Install dependencies
-npm install  # or: bun install
+# Start development server
+bun dev
 
-# 3. Start local development server
-npm run dev  # or: bun dev
+# Build for static production
+bun run build
 ```
-
-Open [http://localhost:3000](http://localhost:3000) to explore the horizontal canvas.
-
-### Production Static Export
-```bash
-npm run build
-```
-Generates an optimized static bundle in the `out/` directory ready for deployment on GitHub Pages or any static host.
 
 ---
 
-## 📜 License & Author
+## License
 
-Crafted with precision by **[Mehdi](https://github.com/mehddium)**.  
-Released under the [MIT License](LICENSE).
+Crafted by [Mehdi](https://github.com/mehddium). Open source under the MIT License.

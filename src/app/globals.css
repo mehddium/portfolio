@@ -6,116 +6,57 @@
 }
 
 :root {
-  --bg: #07080b;
-  --bg-surface: #0e1017;
-  --bg-surface-elevated: #151822;
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(255, 255, 255, 0.22);
-  --text-primary: #f0f1f5;
-  --text-secondary: #8b90a0;
-  --text-tertiary: #525866;
-  --accent-cyan: #38bdf8;
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
+  --bg: #ffffff;
+  --bg-subtle: #f8f9fa;
+  --text-main: #090a0f;
+  --text-muted: #575e6d;
+  --text-subtle: #8a92a3;
+  --border-subtle: #e5e7eb;
+  --accent: #1d4ed8;
 }
 
 @layer base {
-  * {
-    border-color: var(--border-hairline);
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text-main);
   }
 
-  html, body {
+  body {
     background-color: var(--bg);
-    color: var(--text-primary);
+    color: var(--text-main);
     font-family: var(--font-sans);
     letter-spacing: -0.015em;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
   }
 
   ::selection {
-    background-color: rgba(56, 189, 248, 0.25);
-    color: #ffffff;
+    background-color: #e0e7ff;
+    color: #1e1b4b;
   }
 }
 
-/* Horizontal Track System */
-.horizontal-canvas {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: 100vw;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x proximity;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
+/* Minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
 
-/* Individual Bay Layout */
-.horizontal-bay {
-  flex-shrink: 0;
-  height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 5rem;
-  padding-bottom: 4.5rem;
-  padding-left: clamp(2rem, 5vw, 4.5rem);
-  padding-right: clamp(2rem, 5vw, 4.5rem);
-  border-right: 1px solid var(--border-hairline);
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-
-/* Custom Scrollbar for horizontal scrolling */
-.horizontal-canvas::-webkit-scrollbar {
-  height: 4px;
-}
-.horizontal-canvas::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.4);
-}
-.horizontal-canvas::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
-}
-.horizontal-canvas::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Technical Blueprint Grid Accent */
-.bg-grid-blueprint {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-}
-
-/* Subtle corner crosshairs */
-.crosshair-corner {
-  position: relative;
-}
-.crosshair-corner::before {
-  content: "+";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.25);
-  line-height: 1;
-}
-
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.95); }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* Subtle print styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
 }
