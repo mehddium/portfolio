@@ -1,4 +1,4 @@
-# Mehdi — Software Engineer Portfolio
+# Mehdi — Software Engineer Claymorphism Portfolio
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,23 +8,24 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-A clean, minimalist personal portfolio designed with restraint, typography, and focus. Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**.
+A modern, tactile, and balanced personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, styled in a **Claymorphism Aesthetic** (soft 3D tactile pillowy shadows, rounded organic surfaces, Dark/Light theme support, and bilingual FR/EN toggle).
 
 ---
 
 ## 📐 Key Features
 
-* **✨ Restrained & Minimal Design**: Zero unnecessary widgets, zero nested cards, pure typographical focus on what matters.
-* **🌐 Bilingual Support (FR / EN)**: Clean client-side language switch.
-* **🚀 Static Export Architecture (`output: 'export'`)**: Fast, lightweight static pre-rendering deployed to **GitHub Pages** via GitHub Actions.
-* **📂 Selected Projects**: Direct presentation of key engineering work (C & POSIX network server, custom Unix shell & allocator, Next.js platform) with links to GitHub.
-* **⏳ Background & Timeline**: Clear trajectory of academic studies and engineering projects.
+* **🎨 Claymorphism 3D Tactile System**: Soft inset/outset double shadows, floating pill navigation, tactile buttons with spring click feedback, and friendly modern cards.
+* **🌓 Dual Theme Support (Light & Dark Clay)**: Warm pastel porcelain in light mode and deep indigo-slate in dark mode.
+* **🌐 Bilingual Support (FR / EN)**: Seamless client-side language switcher with local storage persistence.
+* **🚀 Static Export Architecture (`output: 'export'`)**: Fast pre-rendered static build deployed to **GitHub Pages** via GitHub Actions.
+* **📂 Filterable Projects Showcase**: Categorized project gallery (Web Fullstack, C & Systems, Networking & Tools) with source code & demo links.
+* **⏳ Education & Experience Timeline**: Clear chronological trajectory of academic and engineering projects.
+* **📄 Printable CV Modal**: Embedded printable resume preview with PDF export.
 * **📁 Projects File Explorer**: Finder/Explorer style window with categorized folder navigation, project search bar, tech badges, and direct GitHub links.
 * **📊 Task Manager (Skills & Resources)**: CPU-like resource meters for technical competencies across C, TypeScript, Next.js, POSIX Sockets, Linux internals, and DevOps.
 * **✨ Ambient Mesh Wallpapers**: Real-time wallpaper switcher cycling between *Deep Aurora*, *Cyberpunk Night*, *Cosmic Glass*, and *Obsidian Dark*.
 * **🚀 Fluent Glass Dock & Start Menu**: Bottom taskbar with running app indicators, live system clock, FR/EN language toggle, and Windows-style Start Menu.
 * **🌐 Full Bilingual Support (FR / EN)**: Instant client-side language toggle between French and English with local storage persistence.
-* **🚀 Static Export Architecture (`output: 'export'`)**: Fully pre-rendered static HTML/CSS/JS deployed automatically to **GitHub Pages** via GitHub Actions.
 * **📂 Interactive Projects Showcase**: Filterable project gallery (`Web Fullstack`, `C & Systems`, `Networking & Tools`) with source code links, tech stack badges, and technical highlights.
 * **⏳ Education & Experience Timeline**: Interactive academic and professional trajectory cards highlighting computer science systems, low-level C programming, networking protocols, and web development.
 * **⚡ Technical Matrix**: Exhaustive categorization of programming languages (C, TypeScript, Python, SQL, Bash), web architecture (Next.js, React 19, Node.js), low-level systems (POSIX Sockets, pthreads, Linux internals), and engineering tools (GDB, Valgrind, Figma).

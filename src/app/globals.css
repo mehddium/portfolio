@@ -1,56 +1,140 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #EAF0F8;
+  --foreground: #1E293B;
+}
+
+.dark {
+  --background: #0E131F;
+  --foreground: #F1F5F9;
+}
 
 @layer base {
-  :root {
-    --bg: #fafafa;
-    --text: #111111;
-    --text-muted: #666666;
-    --border: #e5e5e5;
-    --accent: #000000;
-  }
-
-  .dark {
-    --bg: #0c0c0c;
-    --text: #ededed;
-    --text-muted: #888888;
-    --border: #222222;
-    --accent: #ffffff;
-  }
-
   body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Minimalist Link Hover Animation */
-.link-hover {
-  position: relative;
-  text-decoration: none;
-  transition: color 0.15s ease;
+/* Claymorphism 3D Tactile Shadow System */
+.clay-box {
+  background: #F2F6FC;
+  border-radius: 28px;
+  box-shadow: 
+    14px 14px 28px #cbd5e1,
+    -14px -14px 28px #ffffff,
+    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
+    inset -3px -3px 6px rgba(160, 175, 200, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.link-hover::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.3;
-  transition: opacity 0.15s ease;
+.dark .clay-box {
+  background: #161C2C;
+  box-shadow: 
+    14px 14px 32px #07090f,
+    -10px -10px 24px rgba(35, 45, 65, 0.3),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.08),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.6);
 }
 
-.link-hover:hover::after {
-  opacity: 1;
+.clay-btn {
+  background: #F2F6FC;
+  border-radius: 20px;
+  box-shadow: 
+    7px 7px 16px #cbd5e1,
+    -7px -7px 16px #ffffff,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(160, 175, 200, 0.3);
+  transition: all 0.15s ease;
+}
+
+.dark .clay-btn {
+  background: #1B2236;
+  box-shadow: 
+    7px 7px 16px #07090f,
+    -5px -5px 14px rgba(35, 45, 65, 0.25),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.08),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.clay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    9px 9px 20px #cbd5e1,
+    -9px -9px 20px #ffffff,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(160, 175, 200, 0.3);
+}
+
+.dark .clay-btn:hover {
+  box-shadow: 
+    9px 9px 22px #07090f,
+    -7px -7px 18px rgba(35, 45, 65, 0.3),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.clay-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 
+    inset 4px 4px 8px #cbd5e1,
+    inset -4px -4px 8px #ffffff;
+}
+
+.dark .clay-btn:active {
+  box-shadow: 
+    inset 4px 4px 8px #07090f,
+    inset -4px -4px 8px rgba(35, 45, 65, 0.3);
+}
+
+/* Colored Clay Accents */
+.clay-primary {
+  background: linear-gradient(135deg, #4F46E5, #6366F1);
+  color: white;
+  box-shadow: 
+    8px 8px 18px rgba(79, 70, 229, 0.35),
+    -4px -4px 12px rgba(255, 255, 255, 0.2),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.4),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.clay-primary:hover {
+  box-shadow: 
+    10px 10px 22px rgba(79, 70, 229, 0.45),
+    -4px -4px 12px rgba(255, 255, 255, 0.3),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.5),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.clay-pill {
+  background: #E8EEF7;
+  border-radius: 9999px;
+  box-shadow: 
+    4px 4px 8px #cbd5e1,
+    -4px -4px 8px #ffffff,
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 2px rgba(160, 175, 200, 0.25);
+}
+
+.dark .clay-pill {
+  background: #1D2436;
+  box-shadow: 
+    4px 4px 10px #07090f,
+    -3px -3px 8px rgba(35, 45, 65, 0.2),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.08),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.4);
 }
