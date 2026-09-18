@@ -1,4 +1,4 @@
-# Mehdi — Software Engineer Claymorphism Portfolio
+# Mehdi — Software Engineer Portfolio (Google Material Design 3)
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -8,19 +8,20 @@
 
 > **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-A modern, tactile, and balanced personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, styled in a **Claymorphism Aesthetic** (soft 3D tactile pillowy shadows, rounded organic surfaces, Dark/Light theme support, and bilingual FR/EN toggle).
+A modern, high-standard personal portfolio designed according to **Google's Material Design 3 (Material You / M3)** system. Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, featuring **Google Sans / Roboto Flex** typography, tonal surface containers, M3 filter chips, and extended FABs.
 
 ---
 
 ## 📐 Key Features
 
-* **🎨 Claymorphism 3D Tactile System**: Soft inset/outset double shadows, floating pill navigation, tactile buttons with spring click feedback, and friendly modern cards.
-* **🌓 Dual Theme Support (Light & Dark Clay)**: Warm pastel porcelain in light mode and deep indigo-slate in dark mode.
-* **🌐 Bilingual Support (FR / EN)**: Seamless client-side language switcher with local storage persistence.
-* **🚀 Static Export Architecture (`output: 'export'`)**: Fast pre-rendered static build deployed to **GitHub Pages** via GitHub Actions.
-* **📂 Filterable Projects Showcase**: Categorized project gallery (Web Fullstack, C & Systems, Networking & Tools) with source code & demo links.
-* **⏳ Education & Experience Timeline**: Clear chronological trajectory of academic and engineering projects.
-* **📄 Printable CV Modal**: Embedded printable resume preview with PDF export.
+* **🎨 Material Design 3 (M3 / Material You)**: Dynamic tonal palettes, surface container hierarchy (`surface`, `surface-container-low`, `surface-container-high`), Google 4-color accents, and pill shapes.
+* **🔤 Google Sans Flex & JetBrains Mono**: Official Google typography pairing for headings, prose, and code metadata.
+* **🌓 Dual Tonal Theme Support (M3 Light & Dark)**: Full support for Material 3 Light Surface and Deep Slate Dark Surface.
+* **🌐 Bilingual Support (FR / EN)**: Instant client-side language switcher with local storage persistence.
+* **🚀 Static Export Architecture (`output: 'export'`)**: Ultra-fast static pre-rendered build deployed automatically to **GitHub Pages** via GitHub Actions.
+* **📂 Selected Projects Showcase**: M3 Filter Chips with categorized project cards (Web Fullstack, C & Systems, Networking & Tools) and live demo links.
+* **⏳ Education & Experience Timeline**: Clear chronological trajectory with M3 surface chips and indicators.
+* **📄 Printable CV Dialog**: Full-screen M3 Dialog with printable preview and PDF export.
 * **📁 Projects File Explorer**: Finder/Explorer style window with categorized folder navigation, project search bar, tech badges, and direct GitHub links.
 * **📊 Task Manager (Skills & Resources)**: CPU-like resource meters for technical competencies across C, TypeScript, Next.js, POSIX Sockets, Linux internals, and DevOps.
 * **✨ Ambient Mesh Wallpapers**: Real-time wallpaper switcher cycling between *Deep Aurora*, *Cyberpunk Night*, *Cosmic Glass*, and *Obsidian Dark*.

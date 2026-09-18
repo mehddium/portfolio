@@ -1,35 +1,35 @@
 "use client";
 
 import React, { useState } from "react";
-import ClayHeader from "@/components/clay/ClayHeader";
-import ClayHero from "@/components/clay/ClayHero";
-import ClayProjects from "@/components/clay/ClayProjects";
-import ClayTimeline from "@/components/clay/ClayTimeline";
-import ClaySkills from "@/components/clay/ClaySkills";
-import ClayContact from "@/components/clay/ClayContact";
-import ClayResumeModal from "@/components/clay/ClayResumeModal";
-import ClayFooter from "@/components/clay/ClayFooter";
+import M3Header from "@/components/m3/M3Header";
+import M3Hero from "@/components/m3/M3Hero";
+import M3Projects from "@/components/m3/M3Projects";
+import M3Timeline from "@/components/m3/M3Timeline";
+import M3Skills from "@/components/m3/M3Skills";
+import M3Contact from "@/components/m3/M3Contact";
+import M3ResumeDialog from "@/components/m3/M3ResumeDialog";
+import M3Footer from "@/components/m3/M3Footer";
 
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#EAF0F8] dark:bg-[#0E131F] text-neutral-900 dark:text-neutral-100 selection:bg-indigo-500 selection:text-white relative transition-colors duration-300">
-      {/* Floating Pill Header */}
-      <ClayHeader onOpenResume={() => setResumeOpen(true)} />
+    <div className="min-h-screen bg-[var(--m3-surface)] text-[var(--m3-on-surface)] selection:bg-[var(--m3-primary-container)] selection:text-[var(--m3-on-primary-container)] transition-colors duration-200">
+      {/* M3 Top App Bar */}
+      <M3Header onOpenResume={() => setResumeOpen(true)} />
 
-      {/* Main Content Area */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
-        <ClayHero onOpenResume={() => setResumeOpen(true)} />
-        <ClayProjects />
-        <ClayTimeline />
-        <ClaySkills />
-        <ClayContact />
-        <ClayFooter />
+      {/* M3 Main Content Canvas */}
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 space-y-4">
+        <M3Hero onOpenResume={() => setResumeOpen(true)} />
+        <M3Projects />
+        <M3Timeline />
+        <M3Skills />
+        <M3Contact />
+        <M3Footer />
       </main>
 
-      {/* Clay Resume Modal */}
-      <ClayResumeModal
+      {/* M3 Full Dialog for CV */}
+      <M3ResumeDialog
         isOpen={resumeOpen}
         onClose={() => setResumeOpen(false)}
       />
