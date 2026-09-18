@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mehdi — Software & Systems Engineer Portfolio
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Bun](https://img.shields.io/badge/Bun-1.4-fbf0df?style=flat&logo=bun)](https://bun.sh/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Active-brightgreen?style=flat&logo=github)](https://mehddium.github.io/portfolio/)
 
-First, run the development server:
+> **Live Production Website**: [https://mehddium.github.io/portfolio/](https://mehddium.github.io/portfolio/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A modern, high-performance personal portfolio built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4**, and **Bun**, following the **Swiss International Typographic Style** (minimalist, high-contrast monochrome design, mathematical grid rhythm, and accessible interactions).
+
+---
+
+## 📐 Architecture & Key Features
+
+* **🎨 Swiss Typographic Aesthetic**: High-contrast monochrome dark mode (`oklch` / `neutral-950`), strong grotesque typography, monospace metadata, subtle grid rhythm, and distraction-free layout.
+* **🌐 Full Bilingual Support (FR / EN)**: Instant client-side language toggle between French and English with local storage persistence.
+* **🚀 Static Export Architecture (`output: 'export'`)**: Fully pre-rendered static HTML/CSS/JS deployed automatically to **GitHub Pages** via GitHub Actions.
+* **📂 Interactive Projects Showcase**: Filterable project gallery (`Web Fullstack`, `C & Systems`, `Networking & Tools`) with source code links, tech stack badges, and technical highlights.
+* **⏳ Education & Experience Timeline**: Interactive academic and professional trajectory cards highlighting computer science systems, low-level C programming, networking protocols, and web development.
+* **⚡ Technical Matrix**: Exhaustive categorization of programming languages (C, TypeScript, Python, SQL, Bash), web architecture (Next.js, React 19, Node.js), low-level systems (POSIX Sockets, pthreads, Linux internals), and engineering tools (GDB, Valgrind, Figma).
+* **📄 Interactive Resume (CV) Modal**: Embedded printable resume preview with print/PDF export and escape key bindings.
+* **⚡ Zero 404 Asset Guarantee**: Custom lightweight vector SVG iconography (Lucide + inline SVGs) ensuring 100% path resolution reliability on GitHub Pages subpaths.
+
+---
+
+## 🛠️ Tech Stack
+
+| Domain | Technologies |
+| :--- | :--- |
+| **Framework & Runtime** | [Next.js 15 (App Router)](https://nextjs.org/), [Bun](https://bun.sh/), [React 19](https://react.dev/) |
+| **Styling & Design** | [Tailwind CSS v4](https://tailwindcss.com/), Swiss Typographic Grid, CSS Variables |
+| **Language & Typings** | [TypeScript 5](https://www.typescriptlang.org/) (Strict mode) |
+| **Iconography & Motion** | [Lucide React](https://lucide.dev/), [Framer Motion](https://www.framer.com/motion/) |
+| **CI / CD & Deployment** | [GitHub Actions](https://github.com/features/actions), [GitHub Pages](https://pages.github.com/) |
+
+---
+
+## 📂 Project Structure
+
+```
+portfolio/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions automated CI/CD pipeline
+├── public/                     # Static public assets
+├── src/
+│   ├── app/
+│   │   ├── globals.css         # Tailwind v4 imports & theme definitions
+│   │   ├── layout.tsx          # Root layout, metadata & font definitions
+│   │   └── page.tsx            # Main page assembling all portfolio sections
+│   ├── components/
+│   │   ├── Header.tsx          # Navigation, brand & language switcher
+│   │   ├── Hero.tsx            # Swiss typography header, bio & quick actions
+│   │   ├── ProjectsSection.tsx # Filterable project showcase
+│   │   ├── TimelineSection.tsx # Experience & education node timeline
+│   │   ├── SkillsSection.tsx   # Categorized technical matrix
+│   │   ├── GithubStatsSection.tsx # GitHub profile metrics & activity overview
+│   │   ├── ContactSection.tsx  # Direct email copy card & social links
+│   │   ├── ResumeModal.tsx     # Printable CV preview modal
+│   │   ├── Footer.tsx          # Minimalist footer & back-to-top button
+│   │   └── Icons.tsx           # Custom inline SVG icons
+│   ├── context/
+│   │   └── LanguageContext.tsx # EN/FR bilingual state provider
+│   └── data/
+│       └── portfolioData.ts    # Centralized bilingual data source
+├── next.config.ts              # Next.js static export & basePath config
+├── package.json
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Local Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+* [Bun](https://bun.sh/) (recommended) or [Node.js](https://nodejs.org/) v20+
 
-## Learn More
+### Installation & Run
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**:
+   ```bash
+   git clone git@github.com:mehddium/portfolio.git
+   cd portfolio
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**:
+   ```bash
+   bun install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Start the local development server**:
+   ```bash
+   bun dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-## Deploy on Vercel
+4. **Build and test static export locally**:
+   ```bash
+   bun run build
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔄 DevOps Workflow (Git & CI/CD)
+
+This project strictly follows the **Feature Branch & Conventional Commits** workflow:
+
+1. **Create a feature branch**:
+   ```bash
+   git checkout -b feat/my-new-feature
+   ```
+2. **Commit using Conventional Commits**:
+   ```bash
+   git commit -m "feat(section): add interactive project filter"
+   ```
+3. **Push and merge to `main`**:
+   The `.github/workflows/deploy.yml` pipeline automatically builds and deploys changes to GitHub Pages in under 20 seconds.
+
+---
+
+## 📜 License
+
+Created with passion by [Mehdi](https://github.com/mehddium). Open source under the MIT License.
