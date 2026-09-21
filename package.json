@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "audit:slop": "node scripts/audit-slop.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
