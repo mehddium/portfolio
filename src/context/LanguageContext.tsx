@@ -13,21 +13,22 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>("en");
+  const [lang, setLangState] = useState<Language>("fr");
 
   useEffect(() => {
     const saved = localStorage.getItem("portfolio_lang") as Language;
     if (saved === "fr" || saved === "en") {
-      setLangState(saved);
-    } else {
-      const browserLang = navigator.language.startsWith("fr") ? "fr" : "en";
-      setLangState(browserLang);
+      queueMicrotask(() => setLangState(saved));
+    } else if (typeof navigator !== "undefined" && !navigator.language.startsWith("fr")) {
+      queueMicrotask(() => setLangState("en"));
     }
   }, []);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
-    localStorage.setItem("portfolio_lang", newLang);
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("portfolio_lang", newLang);
+    }
   };
 
   const toggleLang = () => {

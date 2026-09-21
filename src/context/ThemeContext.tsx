@@ -18,17 +18,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const saved = localStorage.getItem("portfolio_theme") as Theme;
     if (saved === "dark" || saved === "light") {
-      setThemeState(saved);
-      document.documentElement.classList.toggle("dark", saved === "dark");
+      queueMicrotask(() => {
+        setThemeState(saved);
+        document.documentElement.classList.toggle("dark", saved === "dark");
+      });
     } else {
-      setThemeState("dark");
       document.documentElement.classList.add("dark");
     }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem("portfolio_theme", newTheme);
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("portfolio_theme", newTheme);
+    }
     document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 

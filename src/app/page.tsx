@@ -1,29 +1,31 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Capabilities from "@/components/Capabilities";
-import Trajectory from "@/components/Trajectory";
-import Contact from "@/components/Contact";
+import QuickHudNav from "@/components/QuickHudNav";
+import HeroSection from "@/components/HeroSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
+import JourneySection from "@/components/JourneySection";
+import RecommendationsSection from "@/components/RecommendationsSection";
+import ContactSection from "@/components/ContactSection";
 import ResumeModal from "@/components/ResumeModal";
 
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 font-sans selection:bg-blue-100 selection:text-blue-900">
-      {/* Sticky Light Navbar */}
-      <Navbar onOpenResume={() => setResumeOpen(true)} />
+    <div className="relative min-h-screen bg-[#07090e] text-neutral-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+      {/* Sticky Floating HUD Navigation */}
+      <QuickHudNav onOpenResume={() => setResumeOpen(true)} />
 
-      {/* Main Single-Column Vertical Content */}
-      <main className="max-w-4xl mx-auto px-6 md:px-8">
-        <Hero />
-        <Projects />
-        <Capabilities />
-        <Trajectory />
-        <Contact onOpenResume={() => setResumeOpen(true)} />
+      {/* Main Fluid Content */}
+      <main className="w-full">
+        <HeroSection onOpenResume={() => setResumeOpen(true)} />
+        <ProjectsSection />
+        <SkillsSection />
+        <JourneySection />
+        <RecommendationsSection />
+        <ContactSection onOpenResume={() => setResumeOpen(true)} />
       </main>
 
       {/* Curriculum Vitae Modal */}
