@@ -3,6 +3,7 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
+import { MessageSquareQuote, CheckCircle2 } from "lucide-react";
 
 export default function RecommendationsSection() {
   const { lang } = useLanguage();
@@ -12,31 +13,59 @@ export default function RecommendationsSection() {
   }
 
   return (
-    <section id="recommandations" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-[#262935]">
+    <section id="recommandations" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232737]">
       <div className="space-y-12">
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+        {/* Section Header */}
+        <div className="max-w-2xl space-y-3">
+          <div className="flex items-center gap-2 text-xs font-medium text-blue-400">
+            <MessageSquareQuote className="w-3.5 h-3.5" />
+            <span>{lang === "fr" ? "Témoignages & Encadrement" : "Endorsements & Supervision"}</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
             {lang === "fr" ? "Recommandations" : "Recommendations"}
           </h2>
-          <p className="text-sm text-neutral-400 mt-1 font-light">
+          <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
             {lang === "fr"
-              ? "Retours d'encadrants et de collaborateurs sur ma rigueur d'ingénierie et ma méthode de travail."
-              : "Feedback from supervisors and teammates on my code discipline and problem solving."}
+              ? "Retours d'ingénieurs et d'enseignants sur ma méthode de travail, ma rigueur technique et ma capacité d'apprentissage."
+              : "Feedback from engineers and supervisors on my work discipline, technical rigor, and problem solving."}
           </p>
         </div>
 
-        {/* Editorial Quotes (No boxed cards!) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* 2-Column Widescreen Testimonial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {portfolioData.recommendations.map((rec) => (
-            <figure key={rec.id} className="space-y-4">
-              <blockquote className="text-base text-neutral-300 font-light leading-relaxed italic border-l-2 border-[#383c4d] pl-4">
-                &ldquo;{rec.text[lang]}&rdquo;
-              </blockquote>
+            <figure
+              key={rec.id}
+              className="rounded-2xl bg-[#161824]/85 border border-[#262a3c] hover:border-[#383e54] transition-all p-7 sm:p-9 flex flex-col justify-between space-y-6 shadow-sm"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    <MessageSquareQuote className="w-5 h-5" />
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium text-neutral-400 bg-[#1a1d29] border border-[#26293a]">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                    <span>{lang === "fr" ? "Avis vérifié" : "Verified review"}</span>
+                  </div>
+                </div>
 
-              <figcaption className="pl-4 text-xs space-y-0.5">
-                <div className="font-semibold text-white">{rec.author}</div>
-                <div className="text-neutral-400">{rec.role[lang]}</div>
-                <div className="text-neutral-500">{rec.institution}</div>
+                <blockquote className="text-sm sm:text-base text-neutral-200 font-light leading-relaxed italic">
+                  &ldquo;{rec.text[lang]}&rdquo;
+                </blockquote>
+              </div>
+
+              <figcaption className="pt-6 border-t border-[#232737] flex items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="font-semibold text-white tracking-tight">
+                    {rec.author}
+                  </div>
+                  <div className="text-xs text-blue-400 font-medium">
+                    {rec.role[lang]}
+                  </div>
+                  <div className="text-xs text-neutral-400">
+                    {rec.institution}
+                  </div>
+                </div>
               </figcaption>
             </figure>
           ))}

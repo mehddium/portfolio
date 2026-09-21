@@ -3,58 +3,99 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
+import { GraduationCap, FolderGit2, Palette, Calendar } from "lucide-react";
 
 export default function JourneySection() {
   const { lang } = useLanguage();
 
+  const getTimelineIcon = (type: string) => {
+    switch (type) {
+      case "education":
+        return <GraduationCap className="w-5 h-5 text-blue-400" />;
+      case "project":
+        return <FolderGit2 className="w-5 h-5 text-emerald-400" />;
+      case "experience":
+        return <Palette className="w-5 h-5 text-indigo-400" />;
+      default:
+        return <Calendar className="w-5 h-5 text-neutral-400" />;
+    }
+  };
+
   return (
-    <section id="parcours" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-[#262935]">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {/* Left Header */}
-        <div className="md:col-span-4 space-y-2">
-          <h2 className="text-2xl font-semibold tracking-tight text-white">
-            {lang === "fr" ? "Parcours & formation" : "Background & Journey"}
+    <section id="parcours" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232737]">
+      <div className="space-y-12">
+        {/* Section Header */}
+        <div className="max-w-2xl space-y-3">
+          <div className="flex items-center gap-2 text-xs font-medium text-blue-400">
+            <GraduationCap className="w-3.5 h-3.5" />
+            <span>{lang === "fr" ? "Formation & Évolution" : "Education & Milestones"}</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+            {lang === "fr" ? "Parcours & apprentissage" : "Journey & Experience"}
           </h2>
-          <p className="text-sm text-neutral-400 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
             {lang === "fr"
-              ? "Études universitaires en informatique et projets pratiques d'envergure."
-              : "Computer science studies combined with large-scale technical projects."}
+              ? "Un cursus solide en informatique combiné à une pratique intensive de projets personnels et académiques exigeants."
+              : "A solid academic computer science background paired with intensive hands-on systems and software development."}
           </p>
         </div>
 
-        {/* Right Minimalist Timeline */}
-        <div className="md:col-span-8 space-y-8 divide-y divide-[#262935]">
-          {portfolioData.timeline.map((item) => (
-            <div key={item.id} className="pt-6 first:pt-0 space-y-2">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                <h3 className="text-base font-semibold text-white tracking-tight">
-                  {item.translations[lang].title}
-                </h3>
-                <span className="text-xs text-neutral-400">
-                  {item.period}
-                </span>
-              </div>
+        {/* 3-Column Widescreen Timeline Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {portfolioData.timeline.map((item) => {
+            const t = item.translations[lang];
 
-              <p className="text-xs text-neutral-400">
-                {item.translations[lang].institution}
-              </p>
+            return (
+              <div
+                key={item.id}
+                className="rounded-2xl bg-[#161824]/85 border border-[#262a3c] hover:border-[#383e54] transition-all p-7 flex flex-col justify-between space-y-6 shadow-sm"
+              >
+                <div className="space-y-5">
+                  {/* Top metadata & period */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#1d202e] border border-[#2b3042]">
+                      {getTimelineIcon(item.type)}
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-xs font-medium text-neutral-300 bg-[#1b1e2b] border border-[#292d3e]">
+                      {item.period}
+                    </span>
+                  </div>
 
-              <p className="text-sm text-neutral-300 font-light leading-relaxed pt-1">
-                {item.translations[lang].description}
-              </p>
+                  {/* Title & Institution */}
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold text-white tracking-tight leading-snug">
+                      {t.title}
+                    </h3>
+                    <p className="text-xs text-blue-400 font-medium">
+                      {t.institution}
+                    </p>
+                  </div>
 
-              <div className="flex flex-wrap gap-1.5 pt-2">
-                {item.translations[lang].skills.map((s, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs text-neutral-400"
-                  >
-                    {s}{idx < item.translations[lang].skills.length - 1 ? " ·" : ""}
+                  {/* Description */}
+                  <p className="text-sm text-neutral-300 font-light leading-relaxed">
+                    {t.description}
+                  </p>
+                </div>
+
+                {/* Skills tags */}
+                <div className="pt-5 border-t border-[#232737] space-y-2">
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-neutral-400 block">
+                    {lang === "fr" ? "Compétences clés" : "Key competencies"}
                   </span>
-                ))}
+                  <div className="flex flex-wrap gap-1.5">
+                    {t.skills.map((skill, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="px-2 py-0.5 rounded text-xs text-neutral-300 bg-[#1b1d28] border border-[#282d3e]"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
