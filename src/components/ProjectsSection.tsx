@@ -3,11 +3,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData, Project } from "@/data/portfolioData";
-import {
-  CheckCircle2,
-  BookOpen,
-} from "lucide-react";
-import { GitHubIcon } from "@/components/Icons";
+import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
 import CaseStudyModal from "@/components/CaseStudyModal";
 
 export default function ProjectsSection() {
@@ -16,9 +12,9 @@ export default function ProjectsSection() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
 
   const categories = [
-    { id: "all", label: { en: "All Projects", fr: "Tous les Projets" } },
-    { id: "systems", label: { en: "C & Systems", fr: "C & Systèmes" } },
-    { id: "network", label: { en: "POSIX Network", fr: "Réseau POSIX" } },
+    { id: "all", label: { en: "All", fr: "Tous" } },
+    { id: "systems", label: { en: "C & Systems", fr: "Systèmes C" } },
+    { id: "network", label: { en: "Networking", fr: "Réseau" } },
     { id: "web", label: { en: "Fullstack Web", fr: "Web Fullstack" } },
   ] as const;
 
@@ -28,141 +24,81 @@ export default function ProjectsSection() {
       : portfolioData.projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projets" className="py-20 sm:py-28 px-4 sm:px-8 border-t border-white/[0.06] relative">
-      <div className="max-w-6xl mx-auto space-y-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>{lang === "fr" ? "01 // Projets & Cas Concrets" : "01 // Concrete Case Studies"}</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              {lang === "fr" ? "Réalisations d'Ingénierie" : "Featured Engineering Deliverables"}
+    <section id="projets" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-[#262935]">
+      <div className="space-y-12">
+        {/* Section Header with Minimal Filters */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+              {lang === "fr" ? "Projets & études de cas" : "Featured Projects"}
             </h2>
-            <p className="text-neutral-400 text-sm sm:text-base font-light max-w-2xl">
+            <p className="text-sm text-neutral-400 mt-1">
               {lang === "fr"
-                ? "Une sélection de projets complexes documentés selon le principe de la preuve contextualisée : problème résolu, architecture, résultats chiffrés et code source."
-                : "Curated engineering projects documented with contextualized evidence: problem solved, architectural trade-offs, measured results, and verified code."}
+                ? "Conception technique, choix d'architecture et résultats mesurés."
+                : "Technical implementation, architecture trade-offs, and verified results."}
             </p>
           </div>
 
-          {/* Interactive Filter Pills */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/10 font-mono text-xs self-start md:self-auto">
+          {/* Minimal Filter text links */}
+          <div className="flex items-center gap-4 text-xs font-medium">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
-              const count =
-                cat.id === "all"
-                  ? portfolioData.projects.length
-                  : portfolioData.projects.filter((p) => p.category === cat.id).length;
-
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                  className={`pb-1 transition-colors ${
                     isActive
-                      ? "bg-emerald-500 text-black font-semibold shadow-sm"
-                      : "text-neutral-400 hover:text-white hover:bg-white/[0.05]"
+                      ? "text-white border-b-2 border-blue-500"
+                      : "text-neutral-400 hover:text-neutral-200"
                   }`}
                 >
-                  <span>{cat.label[lang]}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isActive ? "bg-black/20 text-black font-bold" : "bg-white/10 text-neutral-400"
-                    }`}
-                  >
-                    {count}
-                  </span>
+                  {cat.label[lang]}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Editorial Project List (No repetitive cards!) */}
+        <div className="divide-y divide-[#262935]">
           {filteredProjects.map((project) => {
             const t = project.translations[lang];
-            const isFeatured = project.featured;
 
             return (
-              <div
+              <article
                 key={project.id}
-                className={`p-6 sm:p-8 rounded-2xl bg-white/[0.02] border transition-all flex flex-col justify-between group relative overflow-hidden ${
-                  isFeatured
-                    ? "border-white/10 hover:border-emerald-500/40 hover:bg-white/[0.03]"
-                    : "border-white/[0.06] hover:border-white/20 hover:bg-white/[0.03]"
-                }`}
+                className="py-10 first:pt-4 last:pb-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
               >
-                <div className="space-y-4">
-                  {/* Top Badges */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                    <div className="flex items-center gap-2">
-                      <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider text-[10px]">
-                        {project.category}
-                      </span>
-                      <span className="text-neutral-500">{project.year}</span>
-                    </div>
-
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-mono">
-                      {t.metricBadge}
+                {/* Left Column: Metadata, Title & Actions */}
+                <div className="md:col-span-5 space-y-3">
+                  <div className="flex items-center gap-2 text-xs text-neutral-400">
+                    <span className="uppercase tracking-wider font-medium text-neutral-400">
+                      {project.category}
+                    </span>
+                    <span>&middot;</span>
+                    <span>{project.year}</span>
+                    <span className="text-emerald-400 ml-1">
+                      &middot; {t.metricBadge}
                     </span>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm font-mono text-cyan-400 mt-1">
-                      {t.tagline}
-                    </p>
-                  </div>
+                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight leading-snug">
+                    {project.title}
+                  </h3>
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
-                    {t.description}
+                  <p className="text-xs text-neutral-400 leading-normal">
+                    {t.tagline}
                   </p>
 
-                  {/* Concrete Highlights list */}
-                  <div className="space-y-2 pt-1 font-mono text-xs text-neutral-400">
-                    {t.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{h}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card Footer: Technologies & Action CTAs */}
-                <div className="pt-6 mt-6 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
-                  {/* Tech stack badges */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.slice(0, 4).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-0.5 rounded bg-white/[0.05] text-neutral-300 text-[11px]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-2 py-0.5 rounded bg-white/[0.02] text-neutral-500 text-[10px]">
-                        +{project.technologies.length - 4}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2 shrink-0">
+                  {/* Actions */}
+                  <div className="flex items-center gap-4 pt-2 text-xs">
                     <button
                       onClick={() => setSelectedCaseStudy(project)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-colors font-semibold"
+                      className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                     >
-                      <BookOpen className="w-3.5 h-3.5" />
-                      <span>{lang === "fr" ? "Étude de cas" : "Case Study"}</span>
+                      <span>{lang === "fr" ? "Étude de cas détaillée" : "View case study"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
                     {project.githubUrl && (
@@ -170,15 +106,41 @@ export default function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-neutral-300 hover:text-white transition-colors"
-                        title={lang === "fr" ? "Code sur GitHub" : "View Code on GitHub"}
+                        className="inline-flex items-center gap-1 text-neutral-400 hover:text-neutral-200 transition-colors"
                       >
-                        <GitHubIcon className="w-3.5 h-3.5 fill-current" />
+                        <span>GitHub</span>
+                        <ArrowUpRight className="w-3 h-3" />
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
+
+                {/* Right Column: Description, Highlights & Tech Stack */}
+                <div className="md:col-span-7 space-y-4 text-sm text-neutral-300 font-light leading-relaxed">
+                  <p>{t.description}</p>
+
+                  <ul className="space-y-1.5 text-xs text-neutral-400">
+                    {t.highlights.map((h, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-emerald-400/80 shrink-0 mt-0.5" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Tech stack inline */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded text-xs text-neutral-400 bg-[#1e2029] border border-[#2b2e3c]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
             );
           })}
         </div>

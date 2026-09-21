@@ -58,16 +58,9 @@ export interface TimelineItem {
   };
 }
 
-export interface SkillGroup {
-  nameKey: "systems" | "web" | "devops" | "tools";
-  translations: {
-    en: string;
-    fr: string;
-  };
-  skills: {
-    name: string;
-    level: "Advanced" | "Proficient" | "Familiar";
-  }[];
+export interface SkillCategory {
+  title: { en: string; fr: string };
+  skills: string[];
 }
 
 export interface Recommendation {
@@ -93,32 +86,26 @@ export const portfolioData = {
     linkedinUrl: "https://linkedin.com",
     email: "mehddium@users.noreply.github.com",
     role: {
-      en: "Software & Systems Engineer",
-      fr: "Ingénieur Logiciel & Systèmes",
+      en: "Software & Systems Developer",
+      fr: "Développeur Logiciel & Systèmes",
     },
     pitch: {
-      en: "Software & Systems Engineer specialized in low-level POSIX C, Unix network daemons, and reactive Next.js fullstack platforms.",
-      fr: "Ingénieur Logiciel & Systèmes spécialisé en C/Unix bas niveau, démons réseau POSIX et architectures web fullstack Next.js.",
+      en: "Computer science student building low-level Unix daemons in C and clean fullstack web applications with Next.js and TypeScript.",
+      fr: "Étudiant en informatique, je développe des systèmes Unix en C (réseau, mémoire) et des applications web avec Next.js et TypeScript.",
     },
     status: {
-      en: "Available for Internships & Apprenticeships (2025-2026)",
-      fr: "Disponible pour Stage & Alternance (2025-2026)",
+      en: "Available for internships and apprenticeships in 2025–2026",
+      fr: "Disponible pour stage et alternance (2025–2026)",
     },
-    location: "France // Remote",
+    location: "France",
     bio: {
       en: {
-        headline: "Bridging the gap between low-level systems and modern web architecture.",
-        description:
-          "Computer Science student with deep foundations in low-level C programming, Unix environments, and network protocols, coupled with rigorous hands-on experience building reactive fullstack applications in Next.js and TypeScript. Dedicated to clean architecture, memory safety profiling, and Swiss-inspired minimalist design.",
-        aboutExtended:
-          "Currently tackling academic and open-source engineering challenges ranging from multi-threaded network daemons in C to complete production-grade fullstack web platforms. Highly focused on systems programming, distributed tooling, memory optimization, and intuitive interfaces that eliminate bloat.",
+        intro:
+          "I divide my time between low-level systems programming in C (concurrency, networking, memory management) and modern web engineering in TypeScript. I care about clean structure, zero memory leaks, and simple user interfaces.",
       },
       fr: {
-        headline: "Faire le pont entre la programmation système bas niveau et l'architecture web moderne.",
-        description:
-          "Étudiant en informatique combinant de solides bases en développement bas niveau en C, environnements Unix et protocoles réseau, avec une pratique rigoureuse du développement fullstack en Next.js et TypeScript. Rigoureux sur la performance, l'optimisation mémoire et le design épuré.",
-        aboutExtended:
-          "Actuellement investi dans des projets d'ingénierie d'envergure : serveurs réseau multi-threads en C, ordonnancement de processus Unix et applications web complètes. Animé par l'architecture logicielle propre, la gestion mémoire sans fuite et des interfaces nettes et accessibles.",
+        intro:
+          "Je partage mon temps entre la programmation système en C (concurrence, sockets, gestion mémoire) et le développement web moderne en TypeScript. J'accorde une grande importance à la rigueur d'exécution, au code testé sous Valgrind et aux interfaces simples.",
       },
     },
   },
@@ -126,95 +113,95 @@ export const portfolioData = {
   keyMetrics: [
     {
       value: "5+",
-      label: { en: "Key Technical Projects", fr: "Projets d'Ingénierie" },
-      subtext: { en: "C Systems, Networking & Fullstack", fr: "Systèmes C, Réseau & Fullstack" },
+      label: { en: "Projects delivered", fr: "Projets réalisés" },
+      subtext: { en: "C, networking & web", fr: "C, réseau et web" },
     },
     {
       value: "0",
-      label: { en: "Valgrind Memory Leaks", fr: "Fuite mémoire Valgrind" },
-      subtext: { en: "Strict memory auditing & cleanup", fr: "Audit mémoire & libération stricte" },
+      label: { en: "Valgrind leaks", fr: "Fuites Valgrind" },
+      subtext: { en: "Clean memory audits", fr: "Mémoire auditée" },
     },
     {
       value: "100%",
-      label: { en: "Strict Type Safety", fr: "Typage Strict" },
-      subtext: { en: "TypeScript 5 & ANSI C99/C11", fr: "TypeScript 5 & ANSI C99/C11" },
+      label: { en: "Strict TypeScript", fr: "TypeScript strict" },
+      subtext: { en: "Zero any types", fr: "Sans type any" },
     },
     {
       value: "RFC",
-      label: { en: "Protocol Compliant", fr: "Conformité Protocoles" },
-      subtext: { en: "POSIX TCP/IP, HTTP & REST", fr: "POSIX TCP/IP, HTTP & REST" },
+      label: { en: "POSIX & TCP/IP", fr: "POSIX & TCP/IP" },
+      subtext: { en: "Standard protocols", fr: "Protocoles standards" },
     },
   ] as KeyMetric[],
 
   projects: [
     {
       id: "tcp-ftp-server",
-      title: "Concurrent TCP Network Daemon & Client",
+      title: "Serveur TCP multi-thread & client",
       category: "network",
       year: "2025",
       featured: true,
       translations: {
         en: {
-          tagline: "High-performance multi-threaded POSIX network server in C",
+          tagline: "Concurrent POSIX network server in C",
           description:
-            "Implemented a robust TCP/IP file transfer server and interactive client following RFC specifications. Handled concurrency with POSIX threads, socket multiplexing (select/poll), and custom binary packet framing.",
+            "A TCP/IP file transfer server and client built in C. Handles concurrency with POSIX threads, socket multiplexing with poll(), and binary packet framing.",
           highlights: [
-            "Low-level socket programming with POSIX API (AF_INET, SOCK_STREAM)",
-            "Multi-client concurrency model with thread pooling and mutex synchronization",
-            "Zero-copy file streaming and error-resilient packet parsing",
+            "POSIX socket programming (AF_INET, SOCK_STREAM)",
+            "Thread pool with mutex and condition variable synchronization",
+            "Streaming file transfers and checksum validation",
           ],
-          metricBadge: "500+ Concurrent Connections // 0 Memory Leaks",
+          metricBadge: "500+ clients simultanés",
         },
         fr: {
-          tagline: "Serveur réseau TCP POSIX haute performance et multi-thread en C",
+          tagline: "Serveur réseau TCP POSIX concurrent en C",
           description:
-            "Conception et implémentation d'un serveur et client TCP/IP pour le transfert de données conforme aux spécifications RFC. Gestion de la concurrence via threads POSIX, multiplexage d'E/S (select/poll) et protocole binaire personnalisé.",
+            "Serveur et client de transfert de fichiers TCP/IP en C. Gestion de la concurrence par pool de threads POSIX, multiplexage avec poll() et protocole de trames binaires.",
           highlights: [
-            "Programmation réseau bas niveau avec l'API POSIX (AF_INET, SOCK_STREAM)",
-            "Gestion multi-clients concurrente avec pool de threads et verrous mutex",
-            "Streaming de fichiers et tolérance aux erreurs de transmission",
+            "Programmation réseau avec l'API POSIX (AF_INET, SOCK_STREAM)",
+            "Pool de threads synchronisé par mutex et variables de condition",
+            "Transferts de fichiers en flux continu et contrôle d'intégrité",
           ],
-          metricBadge: "500+ connexions simultanées // 0 fuite mémoire",
+          metricBadge: "500+ clients simultanés",
         },
       },
-      technologies: ["C", "POSIX Sockets", "pthreads", "TCP/IP", "Makefile", "GDB", "Valgrind"],
+      technologies: ["C", "POSIX Sockets", "pthreads", "TCP/IP", "Makefile", "Valgrind", "GDB"],
       githubUrl: "https://github.com/mehddium",
       caseStudy: {
         problem: {
-          en: "Building a reliable, high-throughput file transfer server capable of handling multiple concurrent clients without CPU starvation, socket leaks, or race conditions during rapid disconnects.",
-          fr: "Concevoir un serveur de transfert de fichiers fiable et performant capable de gérer des centaines de clients simultanés sans famine CPU, fuite de descripteurs de sockets ou conditions de course.",
+          en: "Build a reliable file transfer server capable of handling multiple concurrent clients without CPU starvation or socket descriptor leaks during sudden disconnections.",
+          fr: "Concevoir un serveur de transfert de fichiers capable d'absorber des centaines de connexions sans saturer les descripteurs de fichiers ni bloquer sur des déconnexions imprévues.",
         },
         role: {
-          en: "Lead systems architect & developer: implemented the protocol state machine, thread worker pool, circular job queue, and binary packet framing layer.",
-          fr: "Architecte & développeur principal : implémentation de la machine à états finis, du pool de workers multi-threads, de la file circulaire et du protocole binaire de trames.",
+          en: "Architecture and implementation of the protocol state machine, circular task queue, worker threads, and binary packet parser.",
+          fr: "Architecture et écriture de la machine à états finis, de la file d'attente circulaire synchronisée, du pool de workers et du parseur de paquets.",
         },
         architecture: {
-          en: "Designed a pre-forked thread pool architecture with a synchronized ring buffer. Network I/O uses non-blocking sockets with poll() multiplexing to dispatch incoming connection descriptors to idle worker threads.",
-          fr: "Architecture en pool de threads pré-alloués avec file d'attente circulaire synchronisée (mutex + variables de condition). Utilisation d'E/S non-bloquantes multiplexées via poll() pour distribuer les connexions.",
+          en: "A pre-forked thread pool reads incoming sockets from a synchronized circular queue. Non-blocking sockets combined with poll() monitor client state without polling in busy loops.",
+          fr: "Un pool de threads pré-alloués dépile les descripteurs de sockets depuis une file circulaire. Le multiplexage non-bloquant via poll() évite l'attente active du processeur.",
         },
         metrics: {
           en: [
-            "Validated 0 memory leaks across 50,000 requests via Valgrind Memcheck",
-            "Sustained 500+ simulated concurrent connections without dropped packets",
-            "Sub-millisecond packet validation and header checksum verification",
+            "0 memory leaks on Valgrind Memcheck across 50,000 requests",
+            "500+ concurrent simulated connections without packet loss",
+            "Sub-millisecond packet validation and header verification",
           ],
           fr: [
-            "0 fuite mémoire validée sous Valgrind Memcheck sur plus de 50 000 requêtes",
-            "Tenue de charge à 500+ connexions simultanées sans perte de paquets",
-            "Validation de paquets et calcul de somme de contrôle sous la milliseconde",
+            "0 fuite mémoire constatée sous Valgrind sur 50 000 requêtes",
+            "500+ connexions simultanées sans perte de paquets",
+            "Validation des paquets et vérification d'en-tête sous la milliseconde",
           ],
         },
         challenges: {
-          en: "Preventing thread deadlocks on abnormal socket closures during large binary transfers. Solved using atomic cancellation checks and dedicated socket timeout options (SO_RCVTIMEO).",
-          fr: "Éviter les interblocages (deadlocks) lors des fermetures intempestives de sockets pendant un transfert volumineux. Résolu via vérifications atomiques et timeouts de sockets (SO_RCVTIMEO).",
+          en: "Preventing thread deadlocks on abnormal client socket drops during active transfers. Solved with socket timeouts (SO_RCVTIMEO) and signal handling.",
+          fr: "Éviter les interblocages lors de la coupure brutale d'un client en plein transfert. Résolu par des timeouts de sockets et la capture des signaux SIGPIPE.",
         },
         learnings: {
-          en: "Gained deep practical mastery of POSIX synchronization primitives (pthread_mutex, pthread_cond_wait), TCP sliding windows, and robust signal handling (SIGINT/SIGPIPE).",
-          fr: "Maîtrise approfondie des primitives de synchronisation POSIX (mutex, variables de condition), des fenêtres glissantes TCP et de la capture rigoureuse des signaux Unix (SIGINT, SIGPIPE).",
+          en: "Thorough understanding of POSIX thread synchronization, TCP sliding window mechanics, and signal isolation.",
+          fr: "Compréhension pratique des verrous mutex, des variables de condition, de la gestion du protocole TCP et des signaux Unix.",
         },
         codeSnippet: {
           language: "c",
-          title: "worker_pool.c // Safe Connection Dispatch",
+          title: "worker_pool.c (dispatch)",
           code: `void* worker_thread(void* arg) {
     thread_pool_t* pool = (thread_pool_t*)arg;
     while (1) {
@@ -239,72 +226,72 @@ export const portfolioData = {
     },
     {
       id: "unix-shell-allocator",
-      title: "Custom Unix Shell & Dynamic Memory Allocator",
+      title: "Shell Unix & allocateur mémoire personnalisé",
       category: "systems",
       year: "2025",
       featured: true,
       translations: {
         en: {
-          tagline: "Unix process orchestration engine and custom malloc/free implementation",
+          tagline: "Process engine & custom malloc/free implementation",
           description:
-            "Engineered a POSIX-compliant minimalist shell capable of job control, pipeline chaining, and file descriptor redirection. Coupled with a custom memory allocator implementing free-list management and coalescing algorithms.",
+            "A POSIX-compliant shell supporting job control, piping, and stream redirections, paired with an explicit free-list memory allocator.",
           highlights: [
-            "Process lifecycle management (fork, execvp, waitpid, signal handling)",
-            "Piping (|), input/output redirections (<, >, >>) and background job execution",
-            "Custom heap allocator with buddy allocation and first-fit free lists (sbrk/mmap)",
+            "Process management with fork, execvp, waitpid, and signal handling",
+            "Piping (|), redirections (<, >, >>) and background task execution",
+            "Custom heap allocator with boundary tags and block coalescing",
           ],
-          metricBadge: "Full POSIX Job Control // 98% Heap Utilization",
+          metricBadge: "Contrôle des jobs & O(1) coalescing",
         },
         fr: {
-          tagline: "Moteur d'exécution Unix et allocateur dynamique de mémoire personnalisé",
+          tagline: "Moteur d'exécution Unix et allocateur mémoire",
           description:
-            "Développement d'un shell Unix minimaliste supportant la gestion des processus, le chaînage par tubes (pipes) et les redirections d'entrées/sorties. Couplé à un allocateur mémoire (malloc/free) gérant les blocs libres et la fragmentation.",
+            "Interpréteur de commandes Unix supportant la gestion des processus, les pipelines et les redirections d'entrées/sorties, couplé à un allocateur mémoire autonome.",
           highlights: [
-            "Gestion du cycle de vie des processus (fork, execvp, waitpid, signaux)",
-            "Support des pipelines (|), redirections (<, >, >>) et exécution en arrière-plan",
-            "Allocateur de mémoire heap avec liste chaînée de blocs libres et fusion de mémoire",
+            "Gestion des processus avec fork, execvp, waitpid et signaux",
+            "Support des pipes (|), redirections (<, >, >>) et tâches en arrière-plan",
+            "Allocateur heap personnalisé avec balises de limite et fusion de blocs",
           ],
-          metricBadge: "Gestion complète des jobs // 98% d'efficacité mémoire",
+          metricBadge: "Contrôle des jobs & O(1) coalescing",
         },
       },
-      technologies: ["C", "Linux Kernel API", "Valgrind", "GDB", "Memory Management", "Signals"],
+      technologies: ["C", "Linux Kernel API", "Valgrind", "GDB", "Gestion Mémoire", "Signaux"],
       githubUrl: "https://github.com/mehddium",
       caseStudy: {
         problem: {
-          en: "Understanding operating system primitives by creating a shell from scratch that avoids zombie processes, handles nested pipelines, and manages heap memory without standard glibc malloc.",
-          fr: "Comprendre les entrailles d'un système d'exploitation en créant un shell sans dépendance à glibc pour la mémoire, capable de gérer des pipelines complexes sans processus zombies.",
+          en: "Implement core operating system mechanisms from scratch: command parsing, process piping without zombies, and heap memory allocation without glibc malloc.",
+          fr: "Programmer les mécanismes centraux d'un système Unix : parsing de commandes, chaînage de processus sans zombies et gestion du tas sans faire appel au malloc standard.",
         },
         role: {
-          en: "Sole developer: tokenized user commands, managed file descriptor duplication (dup2), orchestrated process groups, and programmed an explicit free-list allocator with block splitting.",
-          fr: "Développeur unique : analyse lexicale, duplication de descripteurs de fichiers (dup2), synchronisation des groupes de processus et programmation de l'allocateur avec fusion de blocs libres.",
+          en: "Full development of the command execution graph, descriptor redirections (dup2), process group isolation, and heap allocation algorithms.",
+          fr: "Développement complet du graphe d'exécution, duplication des descripteurs de fichiers (dup2), gestion des groupes de processus et algorithme d'allocation.",
         },
         architecture: {
-          en: "Shell uses an AST parser for command execution with fork/execvp and pipe chains. The allocator requests memory via sys_brk/mmap and organizes headers with boundary tags for O(1) block coalescing.",
-          fr: "Le shell s'appuie sur une structure d'arbre syntaxique pour exécuter les commandes en chaîne via fork/execvp et pipe. L'allocateur sollicite le kernel via sys_brk/mmap et utilise des balises de limite (boundary tags) pour fusionner les blocs en O(1).",
+          en: "The shell evaluates abstract syntax trees for pipelines. The allocator manages memory directly via sys_brk and mmap, employing boundary tags for constant-time coalescing.",
+          fr: "Le shell évalue les commandes via un parseur d'arbre syntaxique. L'allocateur interagit directement avec le noyau via sys_brk et mmap avec des balises de limite pour fusionner les blocs en O(1).",
         },
         metrics: {
           en: [
-            "Executed arbitrary pipeline depth: cat file | grep foo | sort | uniq -c",
-            "Zero zombie processes generated (SIGCHLD handler with WNOHANG waitpid loop)",
-            "Achieved 98% memory utilization efficiency under high-fragmentation stress tests",
+            "Pipelines of arbitrary depth executed seamlessly",
+            "Zero zombie processes generated across stress testing",
+            "98% heap memory utilization efficiency under random allocation workloads",
           ],
           fr: [
-            "Exécution de pipelines de profondeur arbitraire : cat file | grep foo | sort | uniq -c",
-            "0 processus zombie généré (handler SIGCHLD avec boucle waitpid et flag WNOHANG)",
-            "Taux d'utilisation de la mémoire vive de 98% sous benchmark d'allocations aléatoires",
+            "Exécution fiable de chaînes de tubes de profondeur arbitraire",
+            "0 processus zombie généré lors des tests de charge",
+            "98% d'efficacité d'utilisation mémoire sur des scénarios de fragmentation",
           ],
         },
         challenges: {
-          en: "Managing signal forwarding (SIGINT, SIGTSTP) only to foreground job groups while preserving background running daemons. Solved via tcsetpgrp() and terminal control flags.",
-          fr: "Acheminer les signaux SIGINT/SIGTSTP uniquement aux processus du premier plan sans tuer le shell ni perturber les tâches en arrière-plan. Résolu avec tcsetpgrp() et gestion des process groups.",
+          en: "Ensuring signals like SIGINT and SIGTSTP only target the active foreground job group while leaving background tasks and the shell responsive.",
+          fr: "Distribuer les signaux du clavier (Ctrl+C, Ctrl+Z) uniquement au groupe de processus au premier plan sans impacter le shell.",
         },
         learnings: {
-          en: "Concrete mastery of low-level virtual memory mapping, CPU cache alignment (16-byte aligned blocks), and POSIX process lifecycles.",
-          fr: "Maîtrise concrète de la mémoire virtuelle, de l'alignement mémoire sur 16 octets et de la table des processus du noyau Linux.",
+          en: "Concrete experience with virtual memory mapping, 16-byte memory alignment, and Unix terminal process group control.",
+          fr: "Expérience concrète de la mémoire virtuelle, de l'alignement sur 16 octets et de la gestion des groupes de terminaux Unix.",
         },
         codeSnippet: {
           language: "c",
-          title: "allocator.c // Block Coalescing Algorithm",
+          title: "allocator.c (coalescing)",
           code: `static block_t* coalesce(block_t* block) {
     size_t prev_alloc = get_prev_alloc(block);
     size_t next_alloc = get_next_alloc(block);
@@ -331,198 +318,198 @@ export const portfolioData = {
     },
     {
       id: "fullstack-platform",
-      title: "Modular Fullstack Web Platform",
+      title: "Plateforme web fullstack modulaire",
       category: "web",
       year: "2025",
       featured: true,
       translations: {
         en: {
-          tagline: "End-to-end fullstack platform built with Next.js 15, TypeScript & PostgreSQL",
+          tagline: "Next.js 16, TypeScript & PostgreSQL application",
           description:
-            "A modern, responsive fullstack web application focusing on high-load responsiveness, server-side data fetching, structured database schema, and strict type safety.",
+            "A responsive fullstack application designed for fast data fetching, clean schema migrations, and end-to-end type safety.",
           highlights: [
-            "Next.js App Router with Server Actions and Optimistic UI updates",
-            "Relational database modeling with PostgreSQL and automated migrations",
-            "Secure session management, role-based access control (RBAC), and RESTful endpoints",
+            "Next.js App Router with Server Actions and optimistic interface updates",
+            "PostgreSQL database modeling with automated migration pipelines",
+            "Session authentication and role-based permissions (RBAC)",
           ],
-          metricBadge: "Sub-100ms API Latency // 100% Type-Safe",
+          metricBadge: "TypeScript 100% strict",
         },
         fr: {
-          tagline: "Plateforme web fullstack modulaire en Next.js 15, TypeScript & PostgreSQL",
+          tagline: "Application en Next.js 16, TypeScript et PostgreSQL",
           description:
-            "Application web fullstack moderne axée sur la réactivité, le rendu côté serveur optimisé, la modélisation de base de données relationnelle et la sécurité des données.",
+            "Application web fullstack moderne axée sur le rendu serveur, la modélisation de base de données relationnelle et la sécurité des accès.",
           highlights: [
-            "Architecture Next.js App Router avec Server Actions et mise à jour d'interface réactive",
-            "Modélisation de base de données relationnelle PostgreSQL et migrations automatisées",
-            "Authentification sécurisée, contrôle d'accès par rôles (RBAC) et API typées de bout en bout",
+            "Next.js App Router avec Server Actions et interface réactive",
+            "Base relationnelle PostgreSQL avec migrations versionnées",
+            "Gestion des sessions, contrôle d'accès par rôles (RBAC) et validation des formulaires",
           ],
-          metricBadge: "Latence API < 100ms // 100% Typage Strict",
+          metricBadge: "TypeScript 100% strict",
         },
       },
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Bun"],
       githubUrl: "https://github.com/mehddium",
       caseStudy: {
         problem: {
-          en: "Creating a secure, scalable web platform that ensures snappy user interaction under slow network conditions while maintaining strict database integrity and role security.",
-          fr: "Concevoir une application web sécurisée et hautement réactive, fluide même avec une latence réseau dégradée, tout en assurant l'intégrité stricte des transactions en base.",
+          en: "Build a scalable web application that keeps client JavaScript bundles small while ensuring instant UI feedback on mutations.",
+          fr: "Construire une application web fluide avec un bundle JavaScript client réduit au strict minimum et une mise à jour instantanée des données modifiées.",
         },
         role: {
-          en: "Fullstack developer: implemented schema migrations, Server Actions validation with Zod, optimistic UI updates, and responsive UI layout.",
-          fr: "Développeur fullstack : schéma relationnel, validation stricte des Server Actions via Zod, mises à jour optimistes de l'interface et intégration Tailwind.",
+          en: "Database schema design, Server Actions validation with Zod, and responsive interface integration.",
+          fr: "Conception du schéma relationnel, validation des données avec Zod et intégration responsive.",
         },
         architecture: {
-          en: "Leveraged Next.js App Router with React Server Components (RSC) to minimize client bundle size. Server actions handle mutations directly with PostgreSQL connection pooling.",
-          fr: "Exploitation de Next.js App Router avec React Server Components pour réduire le bundle JavaScript client. Les mutations transitent par Server Actions avec pool de connexions PostgreSQL.",
+          en: "React Server Components handle data fetching directly from PostgreSQL connection pools. Client components remain lean and handle interactions.",
+          fr: "Les React Server Components interrogent directement le pool PostgreSQL côté serveur, réduisant la charge de calcul sur le navigateur du client.",
         },
         metrics: {
           en: [
-            "100% TypeScript coverage with zero any types across client and server",
-            "Lighthouse Performance score of 98/100 and First Contentful Paint < 0.6s",
-            "Database queries optimized with indexes yielding average response times < 25ms",
+            "100% TypeScript coverage with zero any types",
+            "First Contentful Paint under 0.6s on desktop and mobile",
+            "Indexed database queries averaging sub-25ms execution times",
           ],
           fr: [
-            "Couverture TypeScript 100% avec 0 type 'any' côté client comme serveur",
-            "Score Google Lighthouse de 98/100 et First Contentful Paint inférieur à 0,6s",
-            "Requêtes SQL indexées assurant un temps d'exécution moyen inférieur à 25ms",
+            "Couverture TypeScript 100% sans aucun type any",
+            "Affichage initial (FCP) inférieur à 0,6 seconde",
+            "Requêtes SQL indexées s'exécutant en moins de 25 ms en moyenne",
           ],
         },
         challenges: {
-          en: "Eliminating UI layout shifts (CLS) while hydrating dynamic user permissions. Solved via cookie-based server session verification prior to initial render.",
-          fr: "Éliminer les décalages de mise en page (CLS) lors du chargement des droits utilisateurs. Résolu via validation serveur des sessions en amont du premier affichage.",
+          en: "Preventing cumulative layout shift (CLS) during authentication state hydration. Solved via cookie session resolution prior to first render.",
+          fr: "Éviter les sauts de mise en page (CLS) à la vérification de session. Résolu par une vérification des cookies en amont du premier affichage serveur.",
         },
         learnings: {
-          en: "Deep understanding of React Server Components mental model, efficient database indexing strategies, and modern CSS fluid spacing.",
-          fr: "Maîtrise du cycle de vie des React Server Components, des stratégies d'indexation B-Tree en SQL et de l'optimisation des bundles web.",
+          en: "Practical experience with Server Components mental models, SQL index optimization, and modern CSS layout techniques.",
+          fr: "Maîtrise du modèle d'exécution des React Server Components et des indexations de bases relationnelles.",
         },
       },
     },
     {
       id: "packet-sniffer-inspector",
-      title: "Raw Network Packet Sniffer & Inspector",
+      title: "Analyseur de paquets réseau bruts",
       category: "network",
       year: "2024",
       featured: false,
       translations: {
         en: {
-          tagline: "Low-level network packet capture and protocol dissection utility in C",
+          tagline: "Network packet dissection tool in C",
           description:
-            "Command-line tool utilizing raw sockets to capture, decode, and visualize Ethernet, IP, TCP, UDP, and ICMP headers in real-time.",
+            "Command-line utility capturing and decoding Ethernet, IPv4, TCP, and UDP headers in real time via Linux raw sockets.",
           highlights: [
             "Raw socket capture on Linux (AF_PACKET / SOCK_RAW)",
-            "Binary decoding of layer 2, 3, and 4 protocol headers",
-            "Hexdump viewer and traffic filtering by IP/port",
+            "Binary decoding of OSI layer 2, 3, and 4 headers",
+            "Hexdump output and traffic filtering by IP address or port",
           ],
-          metricBadge: "Layer 2-4 Dissection // Microsecond Latency",
+          metricBadge: "Décodage couches 2 à 4",
         },
         fr: {
-          tagline: "Outil d'inspection et de capture de paquets réseau bruts en C",
+          tagline: "Outil d'inspection de paquets réseau en C",
           description:
-            "Utilitaire en ligne de commande exploitant les sockets brutes pour capturer, décoder et analyser les en-têtes Ethernet, IP, TCP, UDP et ICMP en temps réel.",
+            "Utilitaire en ligne de commande capturant et analysant les en-têtes Ethernet, IPv4, TCP et UDP en temps réel via sockets brutes sous Linux.",
           highlights: [
-            "Capture réseau via sockets brutes sous Linux (AF_PACKET / SOCK_RAW)",
-            "Décodage binaire précis des couches 2, 3 et 4 du modèle OSI",
-            "Affichage hexdump formaté et filtrage du trafic par IP et port",
+            "Capture de trames par sockets brutes (AF_PACKET / SOCK_RAW)",
+            "Décodage binaire direct des couches 2, 3 et 4 du modèle OSI",
+            "Visualisation hexdump et filtrage par adresse IP ou port",
           ],
-          metricBadge: "Dissection Couches 2 à 4 // Latence microseconde",
+          metricBadge: "Décodage couches 2 à 4",
         },
       },
-      technologies: ["C", "Raw Sockets", "Network Protocols", "Wireshark", "Linux CLI"],
+      technologies: ["C", "Sockets Brutes", "TCP/IP", "Wireshark", "Linux CLI"],
       githubUrl: "https://github.com/mehddium",
       caseStudy: {
         problem: {
-          en: "Observing and diagnosing unencrypted network traffic without relying on bulky GUI tools, extracting packet fields down to raw byte offsets.",
-          fr: "Capturer et disséquer le trafic réseau local sans dépendance à des interfaces lourdes, en analysant directement les octets bruts des trames.",
+          en: "Inspect local network traffic without heavy graphical utilities, decoding binary protocol fields directly from raw bytes.",
+          fr: "Observer le trafic réseau local sans interface graphique lourde, en lisant directement les octets des trames au niveau noyau.",
         },
         role: {
-          en: "Created the binary parsing pipeline, byte endianness conversions (ntohs/ntohl), and formatted terminal hexdump visualizer.",
-          fr: "Création de la chaîne de décodage binaire, conversion d'endianness réseau (ntohs/ntohl) et affichage couleur formaté en terminal.",
+          en: "Wrote the raw socket initialization, packet parser, byte-endianness conversions, and formatted terminal visualizer.",
+          fr: "Initialisation des sockets brutes, écriture des parseurs de protocoles, conversion de l'endianness et affichage formaté.",
         },
         architecture: {
-          en: "Opens a raw socket bound to all network interfaces (ETH_P_ALL). Dispatches received Ethernet frames through dedicated protocol decoders.",
-          fr: "Ouverture d'une socket brute Linux (AF_PACKET, SOCK_RAW, htons(ETH_P_ALL)) et distribution des trames reçues vers des parseurs dédiés.",
+          en: "Opens an AF_PACKET raw socket bound to network interfaces and pipes incoming frames through dedicated protocol decoders.",
+          fr: "Ouverture d'une socket AF_PACKET liée à l'interface réseau et transmission des paquets vers des fonctions de décodage dédiées.",
         },
         metrics: {
           en: [
-            "Processes up to 10,000 packets/second without buffer overruns",
-            "Accurate validation of IPv4 checksums and TCP flag combinations (SYN/ACK/FIN)",
+            "Analyzes up to 10,000 packets per second without buffer overflow",
+            "Accurate validation of IPv4 checksums and TCP flags",
           ],
           fr: [
-            "Capacité d'analyse jusqu'à 10 000 paquets/seconde sans saturation de tampon",
-            "Validation exacte des sommes de contrôle IPv4 et des drapeaux TCP (SYN/ACK/FIN/RST)",
+            "Traitement jusqu'à 10 000 paquets par seconde sans débordement de tampon",
+            "Contrôle d'intégrité IPv4 et décodage précis des drapeaux TCP",
           ],
         },
         challenges: {
-          en: "Handling network byte order vs host byte order correctly across heterogeneous processor architectures.",
-          fr: "Gestion rigoureuse du boutisme (endianness Big Endian réseau vs Little Endian x86_64) sur chaque champ d'en-tête.",
+          en: "Handling network byte order (Big Endian) versus host byte order (Little Endian) reliably across all header fields.",
+          fr: "Gérer correctement la conversion entre l'ordre des octets réseau (Big Endian) et celui du processeur (Little Endian).",
         },
         learnings: {
-          en: "In-depth understanding of the OSI model, IP fragmentation, and kernel promiscuous mode mechanics.",
-          fr: "Compréhension approfondie du modèle OSI, de la fragmentation IP et du mode promiscuous des interfaces réseau.",
+          en: "Direct understanding of Ethernet framing, IP fragmentation, and promiscuous network capture.",
+          fr: "Compréhension concrète de la structure des trames Ethernet, de la fragmentation IP et du mode promiscuous.",
         },
       },
     },
     {
       id: "swiss-design-system",
-      title: "Swiss Typography & Minimalist UI System",
+      title: "Système typographique & UI épurée",
       category: "web",
       year: "2024",
       featured: false,
       translations: {
         en: {
-          tagline: "Minimalist component system emphasizing typographical grid rhythm",
+          tagline: "Minimalist component system based on typography",
           description:
-            "A crafted UI library inspired by the Swiss International Typographic Style. Features high-contrast dark palette, deliberate white space, and zero unnecessary visual clutter.",
+            "A small React component library focusing on typographic hierarchy, accessible contrast, and zero visual bloat.",
           highlights: [
-            "Design tokens based on mathematical grid scaling",
-            "Accessible keyboard navigation and focus management",
-            "Micro-animations built with hardware-accelerated transforms",
+            "Design tokens based on mathematical type scaling",
+            "Full keyboard accessibility and focus control",
+            "Lightweight transitions with zero styling runtime overhead",
           ],
-          metricBadge: "WCAG AAA Contrast // 60 FPS Transitions",
+          metricBadge: "Contraste WCAG AAA",
         },
         fr: {
-          tagline: "Système de composants basé sur la typographie suisse et la grille modulaire",
+          tagline: "Composants UI basés sur la hiérarchie typographique",
           description:
-            "Bibliothèque de composants UI inspirée du style typographique international suisse. Palette sombre à fort contraste, gestion soignée de l'espace blanc et élimination du superflu.",
+            "Bibliothèque de composants React privilégiant la clarté typographique, l'espace blanc et des contrastes lisibles sans surcharge visuelle.",
           highlights: [
-            "Tokens de design basés sur une échelle modulaire rigoureuse",
-            "Accessibilité native, navigation au clavier et gestion du focus",
-            "Micro-interactions fluides accélérées matériellement",
+            "Tokens de design calculés sur une échelle typographique rigoureuse",
+            "Accessibilité native au clavier et gestion du focus",
+            "Transitions légères sans surcoût d'exécution JavaScript",
           ],
-          metricBadge: "Contraste WCAG AAA // Animations 60 FPS",
+          metricBadge: "Contraste WCAG AAA",
         },
       },
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Figma"],
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Figma"],
       githubUrl: "https://github.com/mehddium",
       caseStudy: {
         problem: {
-          en: "Web interfaces are often cluttered with slow animations and unreadable contrast. The goal was to engineer a high-efficiency design system focusing on instant clarity.",
-          fr: "De nombreuses interfaces web souffrent de lourdeurs visuelles et d'un manque d'accessibilité. L'objectif était de concevoir un système UI ultra-lisible basé sur les principes suisses.",
+          en: "Create an interface foundation that prioritizes readability, instant comprehension, and high contrast over ornamental clutter.",
+          fr: "Concevoir une bibliothèque de composants axée sur la lisibilité immédiate et les contrastes élevés plutôt que sur des effets graphiques superflus.",
         },
         role: {
-          en: "UI/UX Designer & Frontend Engineer: defined typography scales in Figma, engineered reusable React tokens, and validated WCAG compliance.",
-          fr: "Designer UI/UX & Ingénieur Frontend : conception des échelles typographiques sous Figma, développement des composants React et audit WCAG.",
+          en: "Defined type scales in Figma, implemented reusable React components, and audited accessibility.",
+          fr: "Définition des échelles de texte dans Figma, développement des composants en React et audit d'accessibilité.",
         },
         architecture: {
-          en: "Built around semantic HTML5, CSS custom properties for theme tokens, and accessible ARIA attributes.",
-          fr: "Architecture basée sur HTML5 sémantique, variables CSS pour les tokens et conformité totale avec les attributs ARIA.",
+          en: "Semantic HTML elements with Tailwind CSS utility classes and ARIA attributes for screen readers.",
+          fr: "Balisage HTML sémantique avec classes utilitaires Tailwind et attributs ARIA pour la navigation assistée.",
         },
         metrics: {
           en: [
             "100% compliance with WCAG AAA color contrast ratios",
-            "Zero runtime styling overhead via compile-time Tailwind CSS",
+            "Zero runtime styling overhead via static Tailwind compilation",
           ],
           fr: [
-            "Conformité 100% aux ratios de contraste WCAG AAA",
-            "Zéro surcoût d'exécution grâce à la compilation statique Tailwind CSS",
+            "Conformité totale avec les critères de contraste WCAG AAA",
+            "Zéro surcoût d'exécution grâce à la compilation statique CSS",
           ],
         },
         challenges: {
-          en: "Achieving high aesthetic impact while keeping bundle size negligible.",
-          fr: "Maximiser l'élégance visuelle tout en garantissant un poids de bundle quasi nul.",
+          en: "Balancing strict visual simplicity with distinct interactive feedback.",
+          fr: "Maintenir un style sobre tout en offrant des retours d'interaction clairs et intuitifs.",
         },
         learnings: {
-          en: "The power of typographic hierarchy and restraint in professional developer tooling.",
-          fr: "L'impact de la retenue visuelle et de la hiérarchie typographique dans les outils pour développeurs.",
+          en: "The lasting value of whitespace, typography hierarchy, and restraint in developer interfaces.",
+          fr: "La valeur de l'espace blanc, de la hiérarchie de texte et de la simplicité dans les outils techniques.",
         },
       },
     },
@@ -535,18 +522,18 @@ export const portfolioData = {
       type: "education",
       translations: {
         en: {
-          title: "Computer Science & Software Engineering",
+          title: "Computer Science & Engineering Studies",
           institution: "University / Engineering Curriculum",
           description:
-            "Rigorous technical education covering operating systems internals, computer architecture, low-level C programming, algorithm design, data structures, network protocols, and fullstack software development.",
-          skills: ["C Programming", "Unix/Linux Internals", "Networking (TCP/IP)", "Fullstack Web", "Databases"],
+            "Core computer science curriculum covering computer architecture, operating systems internals, low-level C programming, data structures, network protocols, and fullstack software development.",
+          skills: ["Programmation C", "Unix/Linux", "Réseau (TCP/IP)", "Web Fullstack", "Bases de données"],
         },
         fr: {
-          title: "Cursus Informatique & Ingénierie Logicielle",
+          title: "Cursus Informatique & Ingénierie",
           institution: "Université / Cursus d'Ingénieur",
           description:
-            "Formation rigoureuse couvrant l'architecture des ordinateurs, les systèmes d'exploitation, le développement système en C, l'algorithmique avancée, les protocoles réseau et le développement web fullstack moderne.",
-          skills: ["Programmation C", "Systèmes Unix/Linux", "Réseaux (TCP/IP)", "Web Fullstack", "Bases de données"],
+            "Formation couvrant l'architecture des machines, les systèmes d'exploitation, le développement en C, l'algorithmique, les protocoles réseau et le développement web moderne.",
+          skills: ["Programmation C", "Unix/Linux", "Réseau (TCP/IP)", "Web Fullstack", "Bases de données"],
         },
       },
     },
@@ -556,18 +543,18 @@ export const portfolioData = {
       type: "project",
       translations: {
         en: {
-          title: "Major Systems, Network & Web Engineering",
-          institution: "Academic & Technical Lab",
+          title: "Major Systems & Web Engineering Projects",
+          institution: "Academic & Personal Lab",
           description:
-            "Led and built multiple end-to-end technical deliverables: POSIX network servers, custom shell interpreters, memory management tools, and collaborative web platforms with Git/CI-CD workflows.",
-          skills: ["Multi-threading", "POSIX APIs", "Git Flow & CI/CD", "Next.js", "System Architecture"],
+            "Built several end-to-end technical deliverables: multi-threaded network servers in C, a custom Unix shell with memory management, and fullstack Next.js web applications with CI/CD.",
+          skills: ["Multi-threading", "APIs POSIX", "Git & CI/CD", "Next.js", "Architecture logicielle"],
         },
         fr: {
-          title: "Projets Majeurs Systèmes, Réseaux & Web",
-          institution: "Laboratoire Académique & Projets Personnels",
+          title: "Projets Systèmes, Réseau & Web",
+          institution: "Laboratoire & Projets Personnels",
           description:
-            "Conception et livraison de projets d'envergure : serveurs réseau POSIX multi-threads, interpréteur de commandes Unix, allocateurs mémoire et plateformes web collaboratives avec intégration continue.",
-          skills: ["Multi-threading", "APIs POSIX", "Git Flow & CI/CD", "Next.js", "Architecture Système"],
+            "Réalisation de projets techniques complets : serveurs réseau multi-threads en C, interpréteur de commandes Unix avec gestion mémoire, et applications web fullstack avec CI/CD.",
+          skills: ["Multi-threading", "APIs POSIX", "Git & CI/CD", "Next.js", "Architecture logicielle"],
         },
       },
     },
@@ -580,19 +567,65 @@ export const portfolioData = {
           title: "UI/UX & Web Development Practice",
           institution: "Independent Projects",
           description:
-            "Designed and implemented clean digital interfaces in Figma and React/Next.js, focusing on information architecture, typography hierarchy, and accessibility standards.",
-          skills: ["Figma", "UI/UX Architecture", "Tailwind CSS", "Design Systems"],
+            "Designed and implemented clean digital interfaces with Figma and React/Next.js, focusing on information hierarchy, accessible contrast, and clean layout.",
+          skills: ["Figma", "UI/UX", "Tailwind CSS", "Design Systems"],
         },
         fr: {
           title: "Pratique UI/UX & Développement Web",
           institution: "Projets Indépendants",
           description:
-            "Conception et intégration d'interfaces soignées sous Figma et React/Next.js, avec une attention particulière portée à la hiérarchie typographique, la clarté de l'information et l'accessibilité.",
-          skills: ["Figma", "Architecture UI/UX", "Tailwind CSS", "Design Systems"],
+            "Conception et intégration d'interfaces soignées avec Figma et React/Next.js, en veillant à la clarté typographique, à l'accessibilité et aux performances de chargement.",
+          skills: ["Figma", "UI/UX", "Tailwind CSS", "Design Systems"],
         },
       },
     },
   ] as TimelineItem[],
+
+  skillCategories: [
+    {
+      title: { en: "Systems & Low-Level C", fr: "Systèmes & C Bas Niveau" },
+      skills: [
+        "C (C99 / C11)",
+        "Sockets POSIX & TCP/IP",
+        "pthreads & concurrence",
+        "API noyau Linux & processus",
+        "GDB & Valgrind (profilage)",
+        "Allocateurs mémoire & tas",
+      ],
+    },
+    {
+      title: { en: "Modern Fullstack Web", fr: "Web Fullstack Moderne" },
+      skills: [
+        "Next.js 16 (App Router)",
+        "TypeScript 5 (strict)",
+        "React 19",
+        "PostgreSQL & SQL",
+        "Tailwind CSS v4",
+        "APIs REST & WebSockets",
+      ],
+    },
+    {
+      title: { en: "DevOps & Environments", fr: "DevOps & Environnements" },
+      skills: [
+        "Environnements Linux & Unix",
+        "Git & flux collaboratif",
+        "GitHub Actions CI/CD",
+        "Docker & conteneurs",
+        "Makefiles & scripts de build",
+        "Bun & Node.js",
+      ],
+    },
+    {
+      title: { en: "Tools & Standards", fr: "Outils & Standards" },
+      skills: [
+        "Wireshark (analyse réseau)",
+        "Neovim & VS Code",
+        "Figma (architecture UI)",
+        "Scripts Bash",
+        "Qualité web & accessibilité (WCAG)",
+      ],
+    },
+  ] as SkillCategory[],
 
   recommendations: [
     {
@@ -604,12 +637,12 @@ export const portfolioData = {
       },
       institution: "Département Informatique & Systèmes",
       relationship: {
-        en: "Academic project supervisor on low-level POSIX and C architecture",
+        en: "Academic supervisor for systems programming and network architecture",
         fr: "Supervision des projets de programmation système et réseaux en C",
       },
       text: {
-        en: "Mehdi demonstrates rare rigor when dealing with low-level concurrency, memory allocation, and POSIX network protocols. His code is clean, methodically tested with Valgrind, and shows an engineering maturity far ahead of standard students.",
-        fr: "Mehdi fait preuve d'une rigueur remarquable sur les sujets bas niveau, la concurrence multi-threads et les protocoles réseau. Son code est structuré, systématiquement profilé sous Valgrind et dénote une vraie maturité d'ingénieur.",
+        en: "Mehdi shows strong rigor when working with low-level concurrency, memory allocation, and POSIX protocols. His code is structured, systematically audited with Valgrind, and reflects solid engineering discipline.",
+        fr: "Mehdi fait preuve d'une vraie rigueur sur les sujets bas niveau, la concurrence multi-threads et les protocoles réseau. Son code est structuré, systématiquement profilé avec Valgrind et témoigne d'une grande rigueur.",
       },
     },
     {
@@ -621,64 +654,13 @@ export const portfolioData = {
       },
       institution: "Engineering Team",
       relationship: {
-        en: "Collaborated on fullstack Next.js and relational database architectures",
+        en: "Collaborator on fullstack Next.js and relational database projects",
         fr: "Collaboration sur les projets d'applications web Next.js et bases de données",
       },
       text: {
-        en: "Working with Mehdi is seamless: he brings the same performance-oriented mindset from systems programming into modern TypeScript and Next.js applications. Strong problem-solving abilities and great attention to UX details.",
-        fr: "Travailler avec Mehdi est un vrai plaisir : il applique l'exigence de rigueur et d'optimisation de la programmation système au développement web moderne en TypeScript et Next.js. Esprit d'équipe et grand souci du détail.",
+        en: "Working with Mehdi is straightforward: he brings the same performance-oriented mindset from systems programming into modern TypeScript and Next.js applications, with great attention to clean structure.",
+        fr: "Travailler avec Mehdi est simple et efficace : il applique l'exigence d'optimisation de la programmation système au développement web moderne en TypeScript et Next.js, avec un vrai souci du code bien fait.",
       },
     },
   ] as Recommendation[],
-
-  skillGroups: [
-    {
-      nameKey: "systems",
-      translations: { en: "Systems & Low-Level C", fr: "Systèmes & C Bas Niveau" },
-      skills: [
-        { name: "C (C99 / C11)", level: "Advanced" },
-        { name: "POSIX Sockets & TCP/IP", level: "Advanced" },
-        { name: "pthreads & Concurrency", level: "Advanced" },
-        { name: "Linux Kernel API & Processes", level: "Advanced" },
-        { name: "GDB & Valgrind (Profiling)", level: "Advanced" },
-        { name: "Dynamic Memory Allocation", level: "Advanced" },
-      ],
-    },
-    {
-      nameKey: "web",
-      translations: { en: "Modern Fullstack Web", fr: "Web Fullstack Moderne" },
-      skills: [
-        { name: "Next.js (App Router)", level: "Advanced" },
-        { name: "TypeScript 5", level: "Advanced" },
-        { name: "React 19", level: "Advanced" },
-        { name: "PostgreSQL & SQL", level: "Proficient" },
-        { name: "Tailwind CSS v4", level: "Advanced" },
-        { name: "REST APIs & WebSockets", level: "Advanced" },
-      ],
-    },
-    {
-      nameKey: "devops",
-      translations: { en: "DevOps & Environments", fr: "DevOps & Environnements" },
-      skills: [
-        { name: "Linux / Unix Environments", level: "Advanced" },
-        { name: "Git Flow & Collaboration", level: "Advanced" },
-        { name: "GitHub Actions CI/CD", level: "Proficient" },
-        { name: "Docker & Containerization", level: "Proficient" },
-        { name: "Makefiles & Build Tools", level: "Advanced" },
-        { name: "Bun & Node.js Runtime", level: "Advanced" },
-      ],
-    },
-    {
-      nameKey: "tools",
-      translations: { en: "Engineering & Design Tools", fr: "Outils d'Ingénierie & Design" },
-      skills: [
-        { name: "Figma (UI/UX Architecture)", level: "Proficient" },
-        { name: "Wireshark (Network Analysis)", level: "Proficient" },
-        { name: "Neovim & VS Code", level: "Advanced" },
-        { name: "Bruno / Postman API Client", level: "Proficient" },
-        { name: "Bash Scripting", level: "Advanced" },
-        { name: "WCAG / Opquast Web Quality", level: "Advanced" },
-      ],
-    },
-  ] as SkillGroup[],
 };

@@ -3,17 +3,7 @@
 import React, { useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Project } from "@/data/portfolioData";
-import {
-  X,
-  ArrowUpRight,
-  CheckCircle2,
-  Cpu,
-  Layers,
-  BarChart3,
-  Lightbulb,
-  AlertTriangle,
-  Code2,
-} from "lucide-react";
+import { X, ArrowUpRight, Check } from "lucide-react";
 import { GitHubIcon } from "@/components/Icons";
 
 interface CaseStudyModalProps {
@@ -47,204 +37,154 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-sm animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-neutral-950 border border-neutral-800 rounded-2xl shadow-2xl p-6 sm:p-8 text-neutral-200 space-y-6"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#171922] border border-[#2b2e3d] rounded-xl shadow-2xl p-6 sm:p-8 text-neutral-200 space-y-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-start justify-between border-b border-neutral-800 pb-5 gap-4">
+        <div className="flex items-start justify-between border-b border-[#262935] pb-5 gap-4">
           <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs text-neutral-400">
+              <span className="uppercase tracking-wider font-medium text-neutral-300">
                 {project.category}
               </span>
-              <span className="text-xs font-mono text-neutral-500">{project.year}</span>
-              <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                {t.metricBadge}
+              <span>&middot;</span>
+              <span>{project.year}</span>
+              <span className="text-emerald-400 ml-1">
+                &middot; {t.metricBadge}
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
               {project.title}
             </h2>
-            <p className="text-sm font-mono text-cyan-400">{t.tagline}</p>
+
+            <p className="text-sm text-neutral-400 font-normal">
+              {t.tagline}
+            </p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white transition-colors shrink-0"
+            className="p-1.5 rounded-lg bg-[#20232e] hover:bg-[#282b39] text-neutral-400 hover:text-white transition-colors shrink-0"
             aria-label="Fermer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Action Links */}
-        <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-neutral-900/60 border border-neutral-800">
+        {/* Technologies & GitHub Link */}
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 rounded-md bg-neutral-800 text-neutral-300 text-xs font-mono"
+                className="px-2.5 py-1 rounded bg-[#20232e] text-neutral-300 border border-[#2c303f]"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-colors"
-              >
-                <GitHubIcon className="w-3.5 h-3.5 fill-black" />
-                <span>{lang === "fr" ? "Code Source GitHub" : "GitHub Repository"}</span>
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold text-xs hover:bg-cyan-500/30 transition-colors"
-              >
-                <span>{lang === "fr" ? "Démo en direct" : "Live Demo"}</span>
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            )}
-          </div>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white text-neutral-900 font-medium hover:bg-neutral-200 transition-colors"
+            >
+              <GitHubIcon className="w-3.5 h-3.5 fill-current" />
+              <span>{lang === "fr" ? "Voir sur GitHub" : "View on GitHub"}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
 
-        {/* Structured Case Study Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
-          {/* Problem & Goal */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400">
-              <AlertTriangle className="w-4 h-4" />
-              <span>{lang === "fr" ? "1. Problème & Objectifs" : "1. Problem & Goals"}</span>
-            </div>
-            <p className="text-neutral-300 leading-relaxed font-light text-xs sm:text-sm">
+        {/* Structured Case Study Sections (Typographic, not heavy cards) */}
+        <div className="space-y-6 text-sm divide-y divide-[#262935]">
+          {/* Problem */}
+          <div className="space-y-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              {lang === "fr" ? "Problème & Objectifs" : "Problem & Goals"}
+            </h3>
+            <p className="text-neutral-300 font-light leading-relaxed">
               {cs.problem[lang]}
             </p>
           </div>
 
-          {/* Personal Role */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
-              <Cpu className="w-4 h-4" />
-              <span>{lang === "fr" ? "2. Rôle & Contribution" : "2. Personal Role"}</span>
-            </div>
-            <p className="text-neutral-300 leading-relaxed font-light text-xs sm:text-sm">
+          {/* Role */}
+          <div className="pt-6 space-y-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              {lang === "fr" ? "Rôle & Contribution" : "Role & Contribution"}
+            </h3>
+            <p className="text-neutral-300 font-light leading-relaxed">
               {cs.role[lang]}
             </p>
           </div>
 
-          {/* Architecture & Decisions */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2 md:col-span-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-400">
-              <Layers className="w-4 h-4" />
-              <span>
-                {lang === "fr"
-                  ? "3. Choix d'Architecture & Compromis"
-                  : "3. Architecture & Trade-Offs"}
-              </span>
-            </div>
-            <p className="text-neutral-300 leading-relaxed font-light text-xs sm:text-sm">
+          {/* Architecture */}
+          <div className="pt-6 space-y-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              {lang === "fr" ? "Architecture & Choix techniques" : "Architecture & Technical Choices"}
+            </h3>
+            <p className="text-neutral-300 font-light leading-relaxed">
               {cs.architecture[lang]}
             </p>
           </div>
 
-          {/* Measurable Results & Benchmarks */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2.5 md:col-span-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-400">
-              <BarChart3 className="w-4 h-4" />
-              <span>
-                {lang === "fr"
-                  ? "4. Résultats Mesurables & Benchmarks"
-                  : "4. Measurable Results & Metrics"}
-              </span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+          {/* Metrics */}
+          <div className="pt-6 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              {lang === "fr" ? "Résultats mesurables" : "Measured Results"}
+            </h3>
+            <ul className="space-y-1.5">
               {cs.metrics[lang].map((metric, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 rounded-lg bg-neutral-950 border border-neutral-800 flex items-start gap-2"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span className="text-xs text-neutral-300">{metric}</span>
-                </div>
+                <li key={idx} className="flex items-start gap-2 text-neutral-300 font-light">
+                  <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span>{metric}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Challenges Overcome */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-rose-400">
-              <AlertTriangle className="w-4 h-4" />
-              <span>
-                {lang === "fr" ? "5. Défis Résolus" : "5. Key Challenges Overcome"}
-              </span>
+          {/* Challenges & Learnings */}
+          <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="space-y-1.5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                {lang === "fr" ? "Défi résolu" : "Challenge overcome"}
+              </h3>
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {cs.challenges[lang]}
+              </p>
             </div>
-            <p className="text-neutral-300 leading-relaxed font-light text-xs sm:text-sm">
-              {cs.challenges[lang]}
-            </p>
-          </div>
 
-          {/* Key Learnings */}
-          <div className="p-4 rounded-xl bg-neutral-900/40 border border-neutral-800/80 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-300">
-              <Lightbulb className="w-4 h-4" />
-              <span>{lang === "fr" ? "6. Enseignements Tirés" : "6. Engineering Learnings"}</span>
+            <div className="space-y-1.5">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                {lang === "fr" ? "Enseignement technique" : "Key learning"}
+              </h3>
+              <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                {cs.learnings[lang]}
+              </p>
             </div>
-            <p className="text-neutral-300 leading-relaxed font-light text-xs sm:text-sm">
-              {cs.learnings[lang]}
-            </p>
           </div>
         </div>
 
         {/* Code Snippet if present */}
         {cs.codeSnippet && (
           <div className="space-y-2 pt-2">
-            <div className="flex items-center justify-between text-xs font-mono text-neutral-400">
-              <span className="flex items-center gap-2">
-                <Code2 className="w-4 h-4 text-cyan-400" />
-                <span>{cs.codeSnippet.title}</span>
-              </span>
-              <span className="uppercase text-[10px] text-neutral-500">
-                {cs.codeSnippet.language}
-              </span>
+            <div className="text-xs text-neutral-400 font-medium">
+              {cs.codeSnippet.title}
             </div>
-            <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 overflow-x-auto font-mono text-xs text-neutral-300 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#111217] border border-[#2b2e3c] overflow-x-auto text-xs text-neutral-300 font-mono leading-relaxed">
               <pre>
                 <code>{cs.codeSnippet.code}</code>
               </pre>
             </div>
           </div>
         )}
-
-        {/* Modal Footer CTA */}
-        <div className="border-t border-neutral-800 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-neutral-400">
-          <span>{lang === "fr" ? "Étude de cas vérifiée et documentée" : "Documented engineering case study"}</span>
-          <div className="flex items-center gap-3">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1"
-              >
-                <span>{lang === "fr" ? "Inspecter le code sur GitHub" : "Inspect code on GitHub"}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   );

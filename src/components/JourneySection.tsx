@@ -3,94 +3,58 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import { GraduationCap, Briefcase, Award, CheckCircle2 } from "lucide-react";
 
 export default function JourneySection() {
   const { lang } = useLanguage();
 
   return (
-    <section id="parcours" className="py-20 sm:py-28 px-4 sm:px-8 border-t border-white/[0.06] relative">
-      <div className="max-w-6xl mx-auto space-y-10">
-        {/* Section Header */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-widest">
-            <span className="w-2 h-2 rounded-full bg-cyan-400" />
-            <span>{lang === "fr" ? "03 // Trajectoire & Formation" : "03 // Journey & Background"}</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            {lang === "fr" ? "Parcours Académique & Expériences" : "Academic Background & Practice"}
+    <section id="parcours" className="py-20 px-6 sm:px-8 max-w-5xl mx-auto border-t border-[#262935]">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        {/* Left Header */}
+        <div className="md:col-span-4 space-y-2">
+          <h2 className="text-2xl font-semibold tracking-tight text-white">
+            {lang === "fr" ? "Parcours & formation" : "Background & Journey"}
           </h2>
-          <p className="text-neutral-400 text-sm sm:text-base font-light max-w-2xl">
+          <p className="text-sm text-neutral-400 font-light leading-relaxed">
             {lang === "fr"
-              ? "Une formation axée sur les fondations des sciences informatiques et des projets pratiques de grande envergure."
-              : "Rigorous computer science curriculum combined with self-directed engineering initiatives and modern web projects."}
+              ? "Études universitaires en informatique et projets pratiques d'envergure."
+              : "Computer science studies combined with large-scale technical projects."}
           </p>
         </div>
 
-        {/* Timeline Items List */}
-        <div className="space-y-6">
-          {portfolioData.timeline.map((item) => {
-            const isEducation = item.type === "education";
-            const isProject = item.type === "project";
-
-            return (
-              <div
-                key={item.id}
-                className="p-6 sm:p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-white/20 transition-all space-y-4"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`p-2.5 rounded-xl ${
-                        isEducation
-                          ? "bg-cyan-500/10 text-cyan-400"
-                          : isProject
-                          ? "bg-purple-500/10 text-purple-400"
-                          : "bg-emerald-500/10 text-emerald-400"
-                      }`}
-                    >
-                      {isEducation ? (
-                        <GraduationCap className="w-5 h-5" />
-                      ) : isProject ? (
-                        <Award className="w-5 h-5" />
-                      ) : (
-                        <Briefcase className="w-5 h-5" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-white">
-                        {item.translations[lang].title}
-                      </h3>
-                      <p className="text-xs font-mono text-neutral-400 mt-0.5">
-                        {item.translations[lang].institution}
-                      </p>
-                    </div>
-                  </div>
-
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.04] text-neutral-300 border border-white/10 w-fit">
-                    {item.period}
-                  </span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">
-                  {item.translations[lang].description}
-                </p>
-
-                {/* Associated competencies */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {item.translations[lang].skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg bg-white/[0.03] text-neutral-400 border border-white/[0.06]"
-                    >
-                      <CheckCircle2 className="w-3 h-3 text-cyan-400/70" />
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+        {/* Right Minimalist Timeline */}
+        <div className="md:col-span-8 space-y-8 divide-y divide-[#262935]">
+          {portfolioData.timeline.map((item) => (
+            <div key={item.id} className="pt-6 first:pt-0 space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                <h3 className="text-base font-semibold text-white tracking-tight">
+                  {item.translations[lang].title}
+                </h3>
+                <span className="text-xs text-neutral-400">
+                  {item.period}
+                </span>
               </div>
-            );
-          })}
+
+              <p className="text-xs text-neutral-400">
+                {item.translations[lang].institution}
+              </p>
+
+              <p className="text-sm text-neutral-300 font-light leading-relaxed pt-1">
+                {item.translations[lang].description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {item.translations[lang].skills.map((s, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xs text-neutral-400"
+                  >
+                    {s}{idx < item.translations[lang].skills.length - 1 ? " ·" : ""}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

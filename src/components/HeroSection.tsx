@@ -3,12 +3,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import {
-  ArrowRight,
-  FileText,
-  Copy,
-  Check,
-} from "lucide-react";
+import { ArrowDown, Copy, Check, FileText } from "lucide-react";
 
 interface HeroSectionProps {
   onOpenResume: () => void;
@@ -25,132 +20,87 @@ export default function HeroSection({ onOpenResume }: HeroSectionProps) {
   };
 
   return (
-    <section className="pt-32 sm:pt-40 pb-20 px-4 sm:px-8 relative overflow-hidden">
-      {/* Background Radial Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/[0.07] rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto space-y-12 relative">
-        {/* Top Badges */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{portfolioData.profile.status[lang]}</span>
-          </div>
-
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-neutral-400">
-            <span>{portfolioData.profile.location}</span>
-          </div>
+    <section className="pt-32 sm:pt-40 pb-16 sm:pb-20 px-6 sm:px-8 max-w-5xl mx-auto">
+      <div className="space-y-10">
+        {/* Availability line */}
+        <div className="flex items-center gap-2.5 text-xs text-neutral-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          <span>{portfolioData.profile.status[lang]}</span>
+          <span className="text-neutral-600">&middot;</span>
+          <span>{portfolioData.profile.location}</span>
         </div>
 
-        {/* Main Headline & 10-Second Pitch */}
-        <div className="space-y-6 max-w-4xl">
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-widest text-neutral-400">
-            {portfolioData.profile.name} {" // "} {portfolioData.profile.role[lang]}
-          </p>
-
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+        {/* Title & Human Intro */}
+        <div className="space-y-6 max-w-3xl">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.15]">
             {lang === "fr" ? (
               <>
-                De la programmation <span className="text-cyan-400 font-serif italic font-normal">C bas niveau</span> au développement{" "}
-                <span className="text-emerald-400 font-serif italic font-normal">web fullstack</span>.
+                Programmation système en C et architectures web avec Next.js.
               </>
             ) : (
               <>
-                From low-level <span className="text-cyan-400 font-serif italic font-normal">POSIX C</span> to modern{" "}
-                <span className="text-emerald-400 font-serif italic font-normal">fullstack web</span> architecture.
+                Low-level systems in C and web architecture with Next.js.
               </>
             )}
           </h1>
 
-          <p className="text-base sm:text-xl text-neutral-300 font-light leading-relaxed max-w-3xl">
-            {portfolioData.profile.pitch[lang]}
+          <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+            {portfolioData.profile.bio[lang].intro}
           </p>
         </div>
 
-        {/* Call to Actions */}
-        <div className="flex flex-wrap items-center gap-3 pt-2 font-mono text-xs">
+        {/* Minimal actions row */}
+        <div className="flex flex-wrap items-center gap-4 pt-2 text-sm">
           <a
             href="#projets"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-bold hover:bg-neutral-200 transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-neutral-900 font-medium hover:bg-neutral-200 transition-colors"
           >
-            <span>{lang === "fr" ? "Explorer les projets & études de cas" : "Explore Case Studies"}</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>{lang === "fr" ? "Voir les projets" : "View projects"}</span>
+            <ArrowDown className="w-4 h-4" />
           </a>
 
           <button
             onClick={onOpenResume}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-semibold transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#2e3240] text-neutral-300 hover:text-white hover:border-neutral-500 transition-colors"
           >
-            <FileText className="w-4 h-4 text-cyan-400" />
-            <span>{lang === "fr" ? "Consulter le CV (PDF)" : "View Resume (PDF)"}</span>
+            <FileText className="w-4 h-4 text-neutral-400" />
+            <span>{lang === "fr" ? "Consulter le CV" : "View resume"}</span>
           </button>
 
           <button
             onClick={handleCopyEmail}
-            className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 text-neutral-300 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 px-3.5 py-2.5 text-xs text-neutral-400 hover:text-white transition-colors"
             title="Copier l'email"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span>{lang === "fr" ? "Email copié !" : "Email copied!"}</span>
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-emerald-400">{lang === "fr" ? "Email copié" : "Email copied"}</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4 text-neutral-400" />
+                <Copy className="w-3.5 h-3.5" />
                 <span>{portfolioData.profile.email}</span>
               </>
             )}
           </button>
         </div>
 
-        {/* Measurable Key Metrics Ribbon */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/[0.08]">
+        {/* Minimal inline stats without cards */}
+        <div className="pt-8 border-t border-[#262935] grid grid-cols-2 sm:grid-cols-4 gap-6">
           {portfolioData.keyMetrics.map((km, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-1"
-            >
-              <div className="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">
+            <div key={idx} className="space-y-1">
+              <div className="text-2xl font-semibold text-white tracking-tight">
                 {km.value}
               </div>
-              <div className="text-xs font-bold text-white tracking-tight">
+              <div className="text-xs text-neutral-300 font-medium">
                 {km.label[lang]}
               </div>
-              <div className="text-[11px] font-mono text-neutral-500">
+              <div className="text-xs text-neutral-400 font-light">
                 {km.subtext[lang]}
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Interactive Terminal / Code Teaser */}
-        <div className="rounded-2xl bg-neutral-950 border border-neutral-800/80 overflow-hidden shadow-2xl">
-          <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/80 border-b border-neutral-800 font-mono text-xs text-neutral-400">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-              <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              <span className="ml-2 text-neutral-300">mehdi@dev-systems:~# ./verify-profile.sh</span>
-            </div>
-            <span className="text-[11px] text-neutral-500">ANSI C &bull; POSIX &bull; Next.js 16</span>
-          </div>
-
-          <div className="p-5 font-mono text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed overflow-x-auto">
-            <p className="text-emerald-400">[✓] Target: Software & Systems Engineering / Fullstack</p>
-            <p className="text-neutral-400">
-              [✓] Stack 1: POSIX C (pthreads, sockets, poll multiplexing, manual heap alloc)
-            </p>
-            <p className="text-neutral-400">
-              [✓] Stack 2: React 19, Next.js 16 (App Router, Server Actions, TypeScript strict)
-            </p>
-            <p className="text-cyan-400">
-              [✓] Audits: Valgrind Memcheck = 0 errors | 0 bytes leaked in 10k requests
-            </p>
-            <p className="text-neutral-500">
-              [i] Ready to ship resilient, high-performance software.
-            </p>
-          </div>
         </div>
       </div>
     </section>
