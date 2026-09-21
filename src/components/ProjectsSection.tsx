@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData, Project } from "@/data/portfolioData";
-import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import CaseStudyModal from "@/components/CaseStudyModal";
 
 export default function ProjectsSection() {
@@ -26,21 +26,24 @@ export default function ProjectsSection() {
   return (
     <section id="projets" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232635]">
       <div className="space-y-12">
-        {/* Section Header & Clean Filter Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
-              {lang === "fr" ? "Projets & études de cas" : "Projects & Case Studies"}
-            </h2>
-            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-              {lang === "fr"
-                ? "Conception logicielle, architecture système, benchmarks réels et code audité sans fuite mémoire."
-                : "Software engineering, systems architecture, verified benchmarks, and leak-free audited codebases."}
-            </p>
+        {/* Section Header */}
+        <div className="space-y-3 max-w-3xl">
+          <div className="text-xs uppercase tracking-widest text-blue-400 font-medium">
+            {lang === "fr" ? "Réalisations d'ingénierie" : "Engineering Deliverables"}
           </div>
+          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+            {lang === "fr" ? "Projets & études de cas" : "Projects & Case Studies"}
+          </h2>
+          <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+            {lang === "fr"
+              ? "Architecture logicielle, systèmes concurrents, programmation réseau POSIX et applications web de production."
+              : "Software architecture, concurrent systems, POSIX network programming, and production web applications."}
+          </p>
+        </div>
 
-          {/* Clean, stable filter tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#171924] border border-[#25293a] text-xs font-medium self-start sm:self-auto">
+        {/* Filter Tabs - Dedicated full-width line, strictly 1 single horizontal row */}
+        <div className="pt-2 border-b border-[#232635] overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-6 whitespace-nowrap min-w-max pb-3 text-sm">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               const count =
@@ -52,99 +55,67 @@ export default function ProjectsSection() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                  className={`pb-1 transition-colors flex items-center gap-2 font-medium relative ${
                     isActive
-                      ? "bg-[#252a3b] text-white shadow-sm"
+                      ? "text-white"
                       : "text-neutral-400 hover:text-neutral-200"
                   }`}
                 >
                   <span>{cat.label[lang]}</span>
-                  <span className={`text-[11px] ${isActive ? "text-blue-300 font-semibold" : "text-neutral-500"}`}>
-                    ({count})
+                  <span className={`text-xs ${isActive ? "text-blue-400" : "text-neutral-500"}`}>
+                    {count}
                   </span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
+                  )}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Unified Project Grid - Consistent presentation for all deliverables */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, idx) => {
+        {/* Editorial Project Index (No repetitive grey box cards!) */}
+        <div className="divide-y divide-[#232635]">
+          {filteredProjects.map((project) => {
             const t = project.translations[lang];
-            // If the total count is odd and this is the last card in "all" view, let it span 2 columns on lg
-            const isLastOdd = activeCategory === "all" && filteredProjects.length % 2 !== 0 && idx === filteredProjects.length - 1;
 
             return (
               <article
                 key={project.id}
-                className={`rounded-2xl bg-[#161824]/85 border border-[#25293a] hover:border-[#383e54] transition-all p-7 sm:p-9 flex flex-col justify-between group shadow-sm ${
-                  isLastOdd ? "lg:col-span-2" : ""
-                }`}
+                className="py-12 first:pt-4 last:pb-4 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start group"
               >
-                <div className="space-y-5">
-                  {/* Top Metadata row - Clean text, no cards-in-cards */}
-                  <div className="flex items-center justify-between gap-3 text-xs">
-                    <div className="flex items-center gap-2 text-neutral-400 font-medium">
-                      <span className="uppercase tracking-wider text-blue-400 font-semibold text-[11px]">
-                        {project.category}
-                      </span>
-                      <span className="text-neutral-600">&middot;</span>
-                      <span>{project.year}</span>
-                    </div>
-
-                    <span className="text-emerald-400 text-xs font-medium">
+                {/* Left Column: Metadata, Title & Actions (lg:col-span-5) */}
+                <div className="lg:col-span-5 space-y-4">
+                  {/* Category & Year */}
+                  <div className="flex items-center gap-2.5 text-xs text-neutral-400 font-mono">
+                    <span className="text-blue-400 uppercase tracking-wider font-semibold">
+                      {project.category}
+                    </span>
+                    <span className="text-neutral-600">&middot;</span>
+                    <span>{project.year}</span>
+                    <span className="text-neutral-600">&middot;</span>
+                    <span className="text-emerald-400 font-sans font-medium">
                       {t.metricBadge}
                     </span>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <div className="space-y-1.5">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-neutral-400 font-light leading-normal">
-                      {t.tagline}
-                    </p>
-                  </div>
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors leading-snug">
+                    {project.title}
+                  </h3>
 
-                  {/* Description */}
-                  <p className="text-sm text-neutral-300 font-light leading-relaxed">
-                    {t.description}
+                  {/* Tagline */}
+                  <p className="text-sm text-neutral-400 font-light leading-relaxed">
+                    {t.tagline}
                   </p>
 
-                  {/* Architectural Highlights */}
-                  <ul className="space-y-2 text-xs text-neutral-300 pt-1">
-                    {t.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                        <span className="leading-normal">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Footer: Tech Stack & Actions */}
-                <div className="pt-7 mt-6 border-t border-[#222533] space-y-4">
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded-md text-xs text-neutral-300 bg-[#1c1f2b] border border-[#272b3b]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center justify-between pt-1 text-xs">
+                  {/* Direct Action Links */}
+                  <div className="flex items-center gap-5 pt-3 text-xs font-medium">
                     <button
                       onClick={() => setSelectedCaseStudy(project)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600/15 hover:bg-blue-600/25 text-blue-300 border border-blue-500/30 font-medium transition-all"
+                      className="inline-flex items-center gap-1.5 text-white hover:text-blue-400 transition-colors"
                     >
-                      <span>{lang === "fr" ? "Étude de cas complète" : "Full Case Study"}</span>
+                      <span>{lang === "fr" ? "Étude de cas détaillée" : "View case study"}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
@@ -153,12 +124,42 @@ export default function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-neutral-400 hover:text-white px-2 py-1.5 transition-colors"
+                        className="inline-flex items-center gap-1 text-neutral-400 hover:text-white transition-colors"
                       >
                         <span>GitHub</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500" />
                       </a>
                     )}
+                  </div>
+                </div>
+
+                {/* Right Column: Problem, Architecture & Tech Stack (lg:col-span-7) */}
+                <div className="lg:col-span-7 space-y-5 text-neutral-300">
+                  {/* Detailed Description */}
+                  <p className="text-sm sm:text-base font-light leading-relaxed text-neutral-200">
+                    {t.description}
+                  </p>
+
+                  {/* Architecture & Engineering Specifics */}
+                  <div className="space-y-2 pt-1 text-xs sm:text-sm">
+                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-medium block">
+                      {lang === "fr" ? "Choix d'architecture & réalisations" : "Architecture & Deliverables"}
+                    </span>
+                    <p className="text-neutral-300 font-light leading-relaxed">
+                      {project.caseStudy.architecture[lang]}
+                    </p>
+                  </div>
+
+                  {/* Technologies list */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded-md text-xs text-neutral-300 bg-[#191c28] border border-[#272b3c] font-normal"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </article>
