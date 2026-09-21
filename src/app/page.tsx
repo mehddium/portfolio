@@ -14,7 +14,7 @@ export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#14151b] bg-grid-subtle text-[#f0f2f5] font-sans selection:bg-blue-500/20 selection:text-white">
+    <div className="relative min-h-screen bg-[#12141c] bg-grid-subtle text-[#f0f2f5] font-sans selection:bg-blue-500/20 selection:text-white">
       {/* Minimalist Top Navigation */}
       <QuickHudNav onOpenResume={() => setResumeOpen(true)} />
 

@@ -65,26 +65,26 @@ export default function SkillsSection() {
         {/* Left Column: Heading & Core Engineering Principles (lg:col-span-4) */}
         <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
           <div className="space-y-3">
-            <div className="text-xs uppercase tracking-widest text-blue-400 font-medium">
+            <div className="text-xs text-blue-400 font-medium">
               {lang === "fr" ? "Socle technique" : "Technical Stack"}
             </div>
-            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#f0f2f5]">
               {lang === "fr" ? "Compétences & environnement" : "Skills & Environment"}
             </h2>
-            <p className="text-sm text-neutral-300 font-light leading-relaxed">
+            <p className="text-sm text-[#8e94a5] font-light leading-relaxed">
               {lang === "fr"
                 ? "Une double culture technique combinant la rigueur d'optimisation des systèmes bas niveau et la vitesse de livraison du web moderne."
                 : "A dual technical foundation combining low-level systems optimization rigor and modern web delivery speed."}
             </p>
           </div>
 
-          {/* Core Guarantees - Open, minimal text list */}
-          <div className="pt-6 border-t border-[#232635] space-y-4 text-xs">
+          {/* Core Guarantees - High-conviction engineering principles */}
+          <div className="pt-6 border-t border-[#232635] space-y-5 text-xs">
             <div className="space-y-1">
-              <span className="font-semibold text-white block">
-                {lang === "fr" ? "✓ 0 fuite mémoire constatée" : "✓ 0 memory leak tolerance"}
+              <span className="font-semibold text-[#f0f2f5] block">
+                {lang === "fr" ? "Zéro fuite mémoire" : "Zero memory leaks"}
               </span>
-              <p className="text-neutral-400 font-light leading-relaxed">
+              <p className="text-[#8e94a5] font-light leading-relaxed">
                 {lang === "fr"
                   ? "Chaque projet système en C est validé et profilé avec Valgrind Memcheck sans perte de descripteur ni fuite de tas."
                   : "Every low-level C codebase is validated and profiled with Valgrind Memcheck."}
@@ -92,10 +92,10 @@ export default function SkillsSection() {
             </div>
 
             <div className="space-y-1">
-              <span className="font-semibold text-white block">
-                {lang === "fr" ? "✓ TypeScript 100% strict" : "✓ 100% strict TypeScript"}
+              <span className="font-semibold text-[#f0f2f5] block">
+                {lang === "fr" ? "TypeScript 100% strict" : "100% strict TypeScript"}
               </span>
-              <p className="text-neutral-400 font-light leading-relaxed">
+              <p className="text-[#8e94a5] font-light leading-relaxed">
                 {lang === "fr"
                   ? "Aucun type any toléré dans les codebases web. Typage strict de bout en bout de la base SQL jusqu'au client."
                   : "Zero any types permitted. End-to-end type safety from SQL schemas to UI components."}
@@ -109,20 +109,20 @@ export default function SkillsSection() {
           {domainGroups.map((domain, idx) => (
             <div key={idx} className="pt-10 first:pt-0 space-y-4">
               <div className="space-y-1.5">
-                <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#f0f2f5] tracking-tight">
                   {domain.title[lang]}
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#8e94a5] font-light leading-relaxed">
                   {domain.subtitle[lang]}
                 </p>
               </div>
 
-              {/* Fluid Horizontal Tags - Ample space to flow naturally */}
+              {/* Fluid Horizontal Tags */}
               <div className="flex flex-wrap gap-2 pt-2">
                 {domain.skills.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="px-3 py-1.5 rounded-lg text-xs sm:text-sm text-neutral-200 bg-[#181b26] border border-[#262a3c] font-normal hover:border-neutral-400 hover:text-white transition-colors"
+                    className="px-3 py-1.5 rounded-lg text-xs sm:text-sm text-[#f0f2f5] bg-[#181b26] border border-[#232635] font-normal hover:border-[#35394d] transition-colors"
                   >
                     {skill}
                   </span>

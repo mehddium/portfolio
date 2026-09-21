@@ -23,15 +23,15 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
   return (
     <section id="contact" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232635]">
       <div className="space-y-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-          {/* Left Column: Direct Pitch & Availability Context */}
-          <div className="lg:col-span-7 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Pitch & Availability Context (lg:col-span-5) */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
             <div className="inline-flex items-center gap-2 text-xs font-medium text-blue-400">
               <Mail className="w-3.5 h-3.5" />
               <span>{lang === "fr" ? "Recrutement & Contact" : "Recruitment & Contact"}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#f0f2f5] leading-tight">
               {lang === "fr" ? (
                 <>
                   Échangeons sur votre <span className="text-blue-400">prochaine opportunité</span>.
@@ -43,16 +43,16 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
               )}
             </h2>
 
-            <p className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-[#8e94a5] font-light leading-relaxed">
               {lang === "fr"
                 ? "Je recherche activement un stage ou une alternance pour l'année 2025–2026. Que ce soit sur des problématiques bas niveau en C (systèmes, réseaux, performance) ou sur du développement web fullstack en TypeScript/Next.js, je suis prêt à m'investir au sein d'une équipe exigeante."
                 : "I am actively looking for an internship or apprenticeship for 2025–2026. Whether on low-level C challenges (systems, networking, memory performance) or modern fullstack web development with TypeScript/Next.js, I am eager to contribute to an engineering team."}
             </p>
 
-            <div className="pt-2 space-y-3 text-sm text-neutral-300">
+            <div className="pt-2 space-y-2 text-sm text-[#8e94a5]">
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>{portfolioData.profile.status[lang]}</span>
+                <span className="text-[#f0f2f5] font-medium">{portfolioData.profile.status[lang]}</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-blue-400" />
@@ -65,109 +65,133 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
             </div>
           </div>
 
-          {/* Right Column: Interactive Contact Hub Card */}
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl bg-[#161824]/90 border border-[#262a3c] p-6 sm:p-8 space-y-6 shadow-xl">
+          {/* Right Column: Open Direct Channels Index (Zero Card-in-Card) (lg:col-span-7) */}
+          <div className="lg:col-span-7 divide-y divide-[#232635]">
+            {/* Email Channel */}
+            <div className="pb-8 space-y-4">
+              <span className="text-xs font-medium text-blue-400 block">
+                {lang === "fr" ? "Canal prioritaire" : "Primary Channel"}
+              </span>
               <div className="space-y-2">
-                <h3 className="text-base font-semibold text-white tracking-tight">
-                  {lang === "fr" ? "Canaux directs" : "Direct Channels"}
+                <h3 className="text-lg sm:text-xl font-semibold text-[#f0f2f5] tracking-tight">
+                  {lang === "fr" ? "Courrier électronique" : "Direct Email"}
                 </h3>
-                <p className="text-xs text-neutral-400 font-light">
+                <p className="text-xs sm:text-sm text-[#8e94a5] font-light">
                   {lang === "fr"
-                    ? "Réponse assurée sous 24 à 48 heures."
-                    : "Guaranteed response within 24 to 48 hours."}
+                    ? "Réponse assurée sous 24 à 48 heures pour toute opportunité technique."
+                    : "Guaranteed response within 24 to 48 hours for technical opportunities."}
                 </p>
               </div>
 
-              {/* Copy Email Box */}
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-neutral-400 block">
-                  {lang === "fr" ? "Adresse email professionnelle" : "Professional Email"}
-                </label>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#13151f] border border-[#252839] gap-3">
-                  <span className="text-xs sm:text-sm text-neutral-200 font-mono truncate select-all">
-                    {portfolioData.profile.email}
-                  </span>
-                  <button
-                    onClick={handleCopyEmail}
-                    className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#202332] hover:bg-[#282c3f] text-neutral-200 hover:text-white text-xs font-medium transition-colors border border-[#2b3042]"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-emerald-400 font-medium">
-                          {lang === "fr" ? "Copié" : "Copied"}
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5 text-neutral-400" />
-                        <span>{lang === "fr" ? "Copier" : "Copy"}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Action Buttons Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href={`mailto:${portfolioData.profile.email}`}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white text-neutral-950 font-medium hover:bg-neutral-200 transition-all text-xs shadow-sm"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#f0f2f5] text-[#12141c] font-medium hover:bg-white transition-all text-xs shadow-sm"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>{lang === "fr" ? "Écrire un email" : "Send an email"}</span>
+                  <span>{lang === "fr" ? "Écrire un email" : "Send email"}</span>
                 </a>
 
                 <button
-                  onClick={onOpenResume}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#1d202e] border border-[#2c3144] text-neutral-200 hover:text-white hover:border-[#3e445e] transition-all text-xs font-medium"
+                  onClick={handleCopyEmail}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#181b26] border border-[#232635] text-xs text-[#8e94a5] hover:text-[#f0f2f5] hover:border-[#35394d] transition-colors"
                 >
-                  <FileText className="w-3.5 h-3.5 text-neutral-400" />
-                  <span>{lang === "fr" ? "Consulter le CV" : "View resume"}</span>
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400 font-medium">
+                        {lang === "fr" ? "Email copié !" : "Email copied!"}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-[#8e94a5]" />
+                      <span className="font-mono text-neutral-300">{portfolioData.profile.email}</span>
+                    </>
+                  )}
                 </button>
               </div>
+            </div>
 
-              {/* External Profiles */}
-              <div className="pt-4 border-t border-[#232635] flex items-center justify-between text-xs text-neutral-400">
-                <span>{lang === "fr" ? "Profils en ligne" : "Profiles"}</span>
-                <div className="flex items-center gap-4">
-                  <a
-                    href={portfolioData.profile.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-                  >
-                    <GithubIcon className="w-3.5 h-3.5" />
-                    <span>GitHub</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-500" />
-                  </a>
+            {/* Resume Channel */}
+            <div className="py-8 space-y-4">
+              <span className="text-xs font-medium text-[#8e94a5] block">
+                {lang === "fr" ? "Dossier de candidature" : "Application Dossier"}
+              </span>
+              <div className="space-y-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#f0f2f5] tracking-tight">
+                  {lang === "fr" ? "Curriculum Vitae détaillé" : "Detailed Resume"}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#8e94a5] font-light">
+                  {lang === "fr"
+                    ? "Parcours académique, synthèses de projets systèmes et web, compétences clés au format imprimable ou PDF."
+                    : "Academic background, systems and web projects overview, core skills in printable or PDF format."}
+                </p>
+              </div>
 
-                  <a
-                    href={portfolioData.profile.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-                  >
-                    <LinkedinIcon className="w-3.5 h-3.5" />
-                    <span>LinkedIn</span>
-                    <ArrowUpRight className="w-3 h-3 text-neutral-500" />
-                  </a>
-                </div>
+              <div className="pt-2">
+                <button
+                  onClick={onOpenResume}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#181b26] border border-[#232635] text-[#f0f2f5] hover:border-[#35394d] hover:bg-[#202332] transition-all text-xs font-medium"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#8e94a5]" />
+                  <span>{lang === "fr" ? "Consulter le CV interactif" : "Open interactive resume"}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Social & Code Profiles */}
+            <div className="pt-8 space-y-4">
+              <span className="text-xs font-medium text-[#8e94a5] block">
+                {lang === "fr" ? "Code & Réseau" : "Source Code & Network"}
+              </span>
+              <div className="space-y-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#f0f2f5] tracking-tight">
+                  {lang === "fr" ? "Profils professionnels" : "Professional Profiles"}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#8e94a5] font-light">
+                  {lang === "fr"
+                    ? "Dépôts Git publics, commits et historique de contributions."
+                    : "Public Git repositories, commit history, and technical presence."}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-6 pt-2 text-xs">
+                <a
+                  href={portfolioData.profile.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#8e94a5] hover:text-[#f0f2f5] transition-colors font-medium"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  <span>GitHub ({portfolioData.profile.githubUsername})</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500" />
+                </a>
+
+                <a
+                  href={portfolioData.profile.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#8e94a5] hover:text-[#f0f2f5] transition-colors font-medium"
+                >
+                  <LinkedinIcon className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500" />
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Global Footer Banner */}
-        <div className="pt-12 border-t border-[#232635] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-neutral-400 font-light">
+        <div className="pt-12 border-t border-[#232635] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-[#8e94a5] font-light">
           <div className="flex items-center gap-2">
-            <span className="font-medium text-neutral-300">{portfolioData.profile.name}</span>
+            <span className="font-medium text-[#f0f2f5]">{portfolioData.profile.name}</span>
             <span>&middot;</span>
             <span>{portfolioData.profile.role[lang]}</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-neutral-400">
+          <div className="flex flex-wrap items-center gap-4 text-[#8e94a5]">
             <span>Next.js 16 (App Router)</span>
             <span>&middot;</span>
             <span>TypeScript strict</span>

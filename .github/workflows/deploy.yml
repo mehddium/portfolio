@@ -36,6 +36,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Audit anti-slop gates
+        run: bun run audit:slop
+
       - name: Build static site with Next.js
         run: bun run build
 

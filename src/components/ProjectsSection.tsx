@@ -28,13 +28,13 @@ export default function ProjectsSection() {
       <div className="space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-3xl">
-          <div className="text-xs uppercase tracking-widest text-blue-400 font-medium">
+          <div className="text-xs text-blue-400 font-medium">
             {lang === "fr" ? "Réalisations d'ingénierie" : "Engineering Deliverables"}
           </div>
-          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#f0f2f5]">
             {lang === "fr" ? "Projets & études de cas" : "Projects & Case Studies"}
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-[#8e94a5] font-light leading-relaxed">
             {lang === "fr"
               ? "Architecture logicielle, systèmes concurrents, programmation réseau POSIX et applications web de production."
               : "Software architecture, concurrent systems, POSIX network programming, and production web applications."}
@@ -57,8 +57,8 @@ export default function ProjectsSection() {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`pb-1 transition-colors flex items-center gap-2 font-medium relative ${
                     isActive
-                      ? "text-white"
-                      : "text-neutral-400 hover:text-neutral-200"
+                      ? "text-[#f0f2f5]"
+                      : "text-[#8e94a5] hover:text-[#f0f2f5]"
                   }`}
                 >
                   <span>{cat.label[lang]}</span>
@@ -87,12 +87,12 @@ export default function ProjectsSection() {
                 {/* Left Column: Metadata, Title & Actions (lg:col-span-5) */}
                 <div className="lg:col-span-5 space-y-4">
                   {/* Category & Year */}
-                  <div className="flex items-center gap-2.5 text-xs text-neutral-400 font-mono">
-                    <span className="text-blue-400 uppercase tracking-wider font-semibold">
+                  <div className="flex items-center gap-2.5 text-xs">
+                    <span className="text-blue-400 uppercase tracking-wider font-semibold font-sans">
                       {project.category}
                     </span>
                     <span className="text-neutral-600">&middot;</span>
-                    <span>{project.year}</span>
+                    <span className="font-mono text-[#8e94a5]">{project.year}</span>
                     <span className="text-neutral-600">&middot;</span>
                     <span className="text-emerald-400 font-sans font-medium">
                       {t.metricBadge}
@@ -100,12 +100,12 @@ export default function ProjectsSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-[#f0f2f5] tracking-tight group-hover:text-blue-300 transition-colors leading-snug">
                     {project.title}
                   </h3>
 
                   {/* Tagline */}
-                  <p className="text-sm text-neutral-400 font-light leading-relaxed">
+                  <p className="text-sm text-[#8e94a5] font-light leading-relaxed">
                     {t.tagline}
                   </p>
 
@@ -113,7 +113,7 @@ export default function ProjectsSection() {
                   <div className="flex items-center gap-5 pt-3 text-xs font-medium">
                     <button
                       onClick={() => setSelectedCaseStudy(project)}
-                      className="inline-flex items-center gap-1.5 text-white hover:text-blue-400 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-[#f0f2f5] hover:text-blue-400 transition-colors"
                     >
                       <span>{lang === "fr" ? "Étude de cas détaillée" : "View case study"}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -124,7 +124,7 @@ export default function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-neutral-400 hover:text-white transition-colors"
+                        className="inline-flex items-center gap-1 text-[#8e94a5] hover:text-[#f0f2f5] transition-colors"
                       >
                         <span>GitHub</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500" />
@@ -134,18 +134,18 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Right Column: Problem, Architecture & Tech Stack (lg:col-span-7) */}
-                <div className="lg:col-span-7 space-y-5 text-neutral-300">
+                <div className="lg:col-span-7 space-y-5 text-[#8e94a5]">
                   {/* Detailed Description */}
-                  <p className="text-sm sm:text-base font-light leading-relaxed text-neutral-200">
+                  <p className="text-sm sm:text-base font-light leading-relaxed text-[#f0f2f5]">
                     {t.description}
                   </p>
 
                   {/* Architecture & Engineering Specifics */}
                   <div className="space-y-2 pt-1 text-xs sm:text-sm">
-                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-medium block">
+                    <span className="text-xs uppercase tracking-wider text-[#8e94a5] font-medium block">
                       {lang === "fr" ? "Choix d'architecture & réalisations" : "Architecture & Deliverables"}
                     </span>
-                    <p className="text-neutral-300 font-light leading-relaxed">
+                    <p className="text-[#8e94a5] font-light leading-relaxed">
                       {project.caseStudy.architecture[lang]}
                     </p>
                   </div>
@@ -155,7 +155,7 @@ export default function ProjectsSection() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md text-xs text-neutral-300 bg-[#191c28] border border-[#272b3c] font-normal"
+                        className="px-2.5 py-1 rounded-md text-xs text-[#f0f2f5] bg-[#181b26] border border-[#232635] font-normal"
                       >
                         {tech}
                       </span>

@@ -40,6 +40,18 @@ const SLOP_RULES = [
     pattern: /0[1-9]\s*\/\/\s*[A-Z]+/i,
     message: "Banned robotic '01 // TITLE' eyebrows. Use natural editorial hierarchy.",
   },
+  {
+    id: "GATE_07_MONOSPACE_CATEGORY_LABEL",
+    name: "Monospace on non-technical label",
+    pattern: /font-mono[^>]*\{project\.category\}|font-mono[^>]*\{t\.institution\}/,
+    message: "Monospace is strictly reserved for code, terminal logs, and dates.",
+  },
+  {
+    id: "GATE_08_SYNTHETIC_EXTREME_BLACK",
+    name: "Synthetic extreme black background",
+    pattern: /bg-\[#000000\]|bg-\[#07090e\]/,
+    message: "Banned extreme synthetic blacks. Adhere to DESIGN.md palette (#12141c).",
+  },
 ];
 
 function scanDirectory(dir, fileList = []) {

@@ -7,12 +7,13 @@
 }
 
 :root {
-  --bg: #14151b;
-  --bg-surface: #1a1c24;
+  --bg: #12141c;
+  --bg-surface: #181b26;
+  --border: #232635;
   --text: #f0f2f5;
-  --text-muted: #9499a8;
-  --border: #262935;
+  --text-muted: #8e94a5;
   --accent: #3b82f6;
+  --accent-emerald: #10b981;
 }
 
 @layer base {
@@ -26,7 +27,7 @@
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-sans);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.012em;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
@@ -37,14 +38,14 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #14151b;
+  background: #12141c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2e3c;
+  background: #232635;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f4356;
+  background: #35394e;
 }
 
 @keyframes fadeIn {
