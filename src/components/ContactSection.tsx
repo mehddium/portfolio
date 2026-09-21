@@ -21,7 +21,7 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232737]">
+    <section id="contact" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232635]">
       <div className="space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
           {/* Left Column: Direct Pitch & Availability Context */}
@@ -129,7 +129,7 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
               </div>
 
               {/* External Profiles */}
-              <div className="pt-4 border-t border-[#232737] flex items-center justify-between text-xs text-neutral-400">
+              <div className="pt-4 border-t border-[#232635] flex items-center justify-between text-xs text-neutral-400">
                 <span>{lang === "fr" ? "Profils en ligne" : "Profiles"}</span>
                 <div className="flex items-center gap-4">
                   <a
@@ -160,7 +160,7 @@ export default function ContactSection({ onOpenResume }: ContactSectionProps) {
         </div>
 
         {/* Global Footer Banner */}
-        <div className="pt-12 border-t border-[#232737] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-neutral-400 font-light">
+        <div className="pt-12 border-t border-[#232635] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-neutral-400 font-light">
           <div className="flex items-center gap-2">
             <span className="font-medium text-neutral-300">{portfolioData.profile.name}</span>
             <span>&middot;</span>

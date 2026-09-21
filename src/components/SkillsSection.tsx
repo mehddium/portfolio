@@ -3,126 +3,113 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import { Terminal, Globe, Server, ShieldCheck, Cpu } from "lucide-react";
+import { Terminal, Globe } from "lucide-react";
 
 export default function SkillsSection() {
   const { lang } = useLanguage();
 
-  const domainIcons = [
-    <Cpu key="0" className="w-5 h-5 text-blue-400" />,
-    <Globe key="1" className="w-5 h-5 text-indigo-400" />,
-    <Server key="2" className="w-5 h-5 text-emerald-400" />,
-    <ShieldCheck key="3" className="w-5 h-5 text-amber-400" />,
+  // Combine categories into two wide, spacious domains so tags flow horizontally without awkward vertical stacking
+  const systemsSkills = [
+    ...portfolioData.skillCategories[0].skills,
+    "Signaux Unix & IPC",
+    "Multiplexage I/O (poll/select)",
   ];
 
-  const domainGuarantees = [
-    {
-      badge: { en: "Valgrind & GDB Audited", fr: "Audité sous Valgrind & GDB" },
-      focus: {
-        en: "Multi-threaded concurrency, POSIX sockets, custom heap memory allocators.",
-        fr: "Concurrence pthreads, sockets POSIX, allocateurs mémoire sans fuite.",
-      },
-    },
-    {
-      badge: { en: "100% Strict TypeScript", fr: "TypeScript 100% strict" },
-      focus: {
-        en: "Next.js 16 App Router, React Server Components, relational PostgreSQL modeling.",
-        fr: "Next.js 16 App Router, Server Components, modélisation PostgreSQL.",
-      },
-    },
-    {
-      badge: { en: "Automated Pipelines", fr: "Pipelines automatisés" },
-      focus: {
-        en: "Daily Linux/Unix terminal workflow, GitHub Actions CI/CD, Docker containers.",
-        fr: "Environnement Linux/Unix quotidien, GitHub Actions CI/CD, conteneurs Docker.",
-      },
-    },
-    {
-      badge: { en: "POSIX & W3C Standards", fr: "Standards POSIX & W3C" },
-      focus: {
-        en: "Wireshark frame analysis, Neovim, Figma UI systems, WCAG AAA accessibility.",
-        fr: "Analyse réseau Wireshark, Neovim, Figma, accessibilité WCAG AAA.",
-      },
-    },
+  const webDevopsSkills = [
+    ...portfolioData.skillCategories[1].skills,
+    ...portfolioData.skillCategories[2].skills.slice(0, 4),
+    "Figma & WCAG AAA",
+    "Wireshark (réseau)",
   ];
 
   return (
-    <section id="competences" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232737]">
+    <section id="competences" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232635]">
       <div className="space-y-12">
         {/* Section Header */}
-        <div className="max-w-2xl space-y-3">
-          <div className="flex items-center gap-2 text-xs font-medium text-blue-400">
-            <Terminal className="w-3.5 h-3.5" />
-            <span>{lang === "fr" ? "Stack & Environnement" : "Stack & Environment"}</span>
-          </div>
+        <div className="max-w-2xl space-y-2">
           <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
-            {lang === "fr" ? "Compétences & architecture" : "Skills & Architecture"}
+            {lang === "fr" ? "Compétences & environnement" : "Skills & Environment"}
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
             {lang === "fr"
-              ? "Une double culture technique : la rigueur et l'optimisation des systèmes bas niveau, alliées à l'expérience produit et à la réactivité du web moderne."
-              : "A dual technical foundation: low-level systems rigor and optimization, combined with modern web product agility and speed."}
+              ? "Une double culture technique : l'optimisation des systèmes bas niveau et la rigueur produit du web moderne."
+              : "A dual technical background: low-level systems optimization and modern web product engineering."}
           </p>
         </div>
 
-        {/* 4-Column Widescreen Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {portfolioData.skillCategories.map((cat, idx) => {
-            const guarantee = domainGuarantees[idx];
-
-            return (
-              <div
-                key={idx}
-                className="rounded-2xl bg-[#161824]/85 border border-[#262a3c] hover:border-[#383e54] transition-all p-6 flex flex-col justify-between space-y-6 shadow-sm"
-              >
-                <div className="space-y-5">
-                  {/* Icon & Guarantee Pill */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="p-2.5 rounded-xl bg-[#1d202e] border border-[#2b3042]">
-                      {domainIcons[idx]}
-                    </div>
-                    <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#1b1e2c] border border-[#2b3044] text-neutral-300">
-                      {guarantee.badge[lang]}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-white tracking-tight">
-                    {cat.title[lang]}
-                  </h3>
-
-                  {/* Focus note */}
-                  <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                    {guarantee.focus[lang]}
-                  </p>
-
-                  {/* Skills tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {cat.skills.map((skill, sIdx) => (
-                      <span
-                        key={sIdx}
-                        className="px-2.5 py-1 rounded-md text-xs text-neutral-300 bg-[#1c1f2b] border border-[#282d3e]"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+        {/* Two Wide Spacious Domains - Tags flow horizontally across the screen */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+          {/* Domain 1: Systems & Low-Level C */}
+          <div className="rounded-2xl bg-[#161824]/85 border border-[#25293a] p-7 sm:p-9 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2.5 text-blue-400">
+                <Terminal className="w-5 h-5" />
+                <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">
+                  {lang === "fr" ? "Systèmes Unix & C Bas Niveau" : "Unix Systems & Low-Level C"}
+                </h3>
               </div>
-            );
-          })}
+
+              <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                {lang === "fr"
+                  ? "Programmation système POSIX, concurrence multi-threads (pthreads), communications réseau par sockets TCP/IP et gestion de la mémoire sans fuite auditée sous Valgrind Memcheck."
+                  : "POSIX systems programming, multi-threaded concurrency (pthreads), TCP/IP socket communications, and leak-free memory management verified under Valgrind Memcheck."}
+              </p>
+            </div>
+
+            {/* Horizontal flow chips */}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              {systemsSkills.map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1.5 rounded-lg text-xs sm:text-sm text-neutral-200 bg-[#1d202e] border border-[#2c3042] font-normal hover:border-neutral-500 transition-colors"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Domain 2: Modern Fullstack Web & DevOps */}
+          <div className="rounded-2xl bg-[#161824]/85 border border-[#25293a] p-7 sm:p-9 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2.5 text-indigo-400">
+                <Globe className="w-5 h-5" />
+                <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">
+                  {lang === "fr" ? "Web Fullstack & Infrastructure" : "Fullstack Web & Infrastructure"}
+                </h3>
+              </div>
+
+              <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                {lang === "fr"
+                  ? "Développement d'applications performantes avec Next.js 16 (App Router), TypeScript 5 strict sans aucun type any, schémas relationnels PostgreSQL et conteneurisation Docker."
+                  : "Modern applications built with Next.js 16 (App Router), 100% strict TypeScript without any types, relational PostgreSQL schemas, and Docker containerization."}
+              </p>
+            </div>
+
+            {/* Horizontal flow chips */}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              {webDevopsSkills.map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1.5 rounded-lg text-xs sm:text-sm text-neutral-200 bg-[#1d202e] border border-[#2c3042] font-normal hover:border-neutral-500 transition-colors"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Technical Discipline Banner */}
-        <div className="rounded-xl bg-[#141622] border border-[#252839] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-neutral-300">
+        {/* Engineering Principles - Simple and unboxed */}
+        <div className="pt-8 border-t border-[#232635] grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-neutral-300">
           <div className="space-y-1">
             <span className="font-semibold text-white block">
               {lang === "fr" ? "Mémoire & Stabilité" : "Memory & Stability"}
             </span>
-            <p className="text-neutral-400 leading-relaxed font-light">
+            <p className="text-neutral-400 font-light leading-relaxed">
               {lang === "fr"
-                ? "Code en C audité sous Valgrind Memcheck. Zéro fuite de mémoire et isolation stricte des signaux Unix."
-                : "C code audited with Valgrind Memcheck. Zero memory leaks and strict Unix signal handling."}
+                ? "Code C audité sous Valgrind Memcheck. Zéro fuite mémoire et gestion stricte des signaux Unix."
+                : "C code verified with Valgrind Memcheck. Zero memory leaks and strict Unix signal handling."}
             </p>
           </div>
 
@@ -130,10 +117,10 @@ export default function SkillsSection() {
             <span className="font-semibold text-white block">
               {lang === "fr" ? "Typage Strict End-to-End" : "Strict End-to-End Typing"}
             </span>
-            <p className="text-neutral-400 leading-relaxed font-light">
+            <p className="text-neutral-400 font-light leading-relaxed">
               {lang === "fr"
-                ? "TypeScript en mode strict sans aucun type any. Validation des entrées avec Zod et requêtes SQL typées."
-                : "TypeScript in strict mode with zero any types. Input validation with Zod and typed SQL queries."}
+                ? "TypeScript en mode strict sans type any. Validation Zod et requêtes SQL typées."
+                : "TypeScript in strict mode with zero any types. Zod validation and typed SQL queries."}
             </p>
           </div>
 
@@ -141,10 +128,10 @@ export default function SkillsSection() {
             <span className="font-semibold text-white block">
               {lang === "fr" ? "Respect des Protocoles" : "Standard Protocols"}
             </span>
-            <p className="text-neutral-400 leading-relaxed font-light">
+            <p className="text-neutral-400 font-light leading-relaxed">
               {lang === "fr"
-                ? "Implémentation fidèle des spécifications POSIX, des RFC réseau (TCP/IP) et des normes WCAG pour l'accessibilité."
-                : "Strict compliance with POSIX standards, TCP/IP RFCs, and WCAG accessibility guidelines."}
+                ? "Implémentation fidèle des spécifications POSIX, des RFC réseau (TCP/IP) et normes WCAG."
+                : "Strict compliance with POSIX standards, TCP/IP RFCs, and WCAG accessibility."}
             </p>
           </div>
         </div>

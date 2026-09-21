@@ -3,7 +3,7 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import { GraduationCap, FolderGit2, Palette, Calendar } from "lucide-react";
+import { GraduationCap, FolderGit2, Palette } from "lucide-react";
 
 export default function JourneySection() {
   const { lang } = useLanguage();
@@ -17,59 +17,51 @@ export default function JourneySection() {
       case "experience":
         return <Palette className="w-5 h-5 text-indigo-400" />;
       default:
-        return <Calendar className="w-5 h-5 text-neutral-400" />;
+        return null;
     }
   };
 
   return (
-    <section id="parcours" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232737]">
+    <section id="parcours" className="py-24 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-t border-[#232635]">
       <div className="space-y-12">
         {/* Section Header */}
-        <div className="max-w-2xl space-y-3">
-          <div className="flex items-center gap-2 text-xs font-medium text-blue-400">
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>{lang === "fr" ? "Formation & Évolution" : "Education & Milestones"}</span>
-          </div>
+        <div className="max-w-2xl space-y-2">
           <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
-            {lang === "fr" ? "Parcours & apprentissage" : "Journey & Experience"}
+            {lang === "fr" ? "Parcours & apprentissage" : "Journey & Milestones"}
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
             {lang === "fr"
-              ? "Un cursus solide en informatique combiné à une pratique intensive de projets personnels et académiques exigeants."
-              : "A solid academic computer science background paired with intensive hands-on systems and software development."}
+              ? "Un cursus universitaire en informatique combiné à une pratique intensive de projets concrets."
+              : "Academic computer science curriculum paired with intensive hands-on software development."}
           </p>
         </div>
 
-        {/* 3-Column Widescreen Timeline Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* 3-Column Timeline - Open, breathable, zero nested boxes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {portfolioData.timeline.map((item) => {
             const t = item.translations[lang];
 
             return (
               <div
                 key={item.id}
-                className="rounded-2xl bg-[#161824]/85 border border-[#262a3c] hover:border-[#383e54] transition-all p-7 flex flex-col justify-between space-y-6 shadow-sm"
+                className="rounded-2xl bg-[#161824]/85 border border-[#25293a] p-7 sm:p-8 flex flex-col justify-between space-y-6"
               >
-                <div className="space-y-5">
-                  {/* Top metadata & period */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="p-2.5 rounded-xl bg-[#1d202e] border border-[#2b3042]">
+                <div className="space-y-4">
+                  {/* Top metadata - Clean floating icon and direct text date (no nested boxes!) */}
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2">
                       {getTimelineIcon(item.type)}
+                      <span className="text-neutral-400 font-medium">{t.institution}</span>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-medium text-neutral-300 bg-[#1b1e2b] border border-[#292d3e]">
+                    <span className="text-neutral-400 font-mono">
                       {item.period}
                     </span>
                   </div>
 
-                  {/* Title & Institution */}
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-semibold text-white tracking-tight leading-snug">
-                      {t.title}
-                    </h3>
-                    <p className="text-xs text-blue-400 font-medium">
-                      {t.institution}
-                    </p>
-                  </div>
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white tracking-tight leading-snug">
+                    {t.title}
+                  </h3>
 
                   {/* Description */}
                   <p className="text-sm text-neutral-300 font-light leading-relaxed">
@@ -77,16 +69,16 @@ export default function JourneySection() {
                   </p>
                 </div>
 
-                {/* Skills tags */}
-                <div className="pt-5 border-t border-[#232737] space-y-2">
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-neutral-400 block">
-                    {lang === "fr" ? "Compétences clés" : "Key competencies"}
+                {/* Skills - Simple text tags */}
+                <div className="pt-4 border-t border-[#222533] space-y-2">
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-medium block">
+                    {lang === "fr" ? "Compétences clés" : "Key skills"}
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {t.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="px-2 py-0.5 rounded text-xs text-neutral-300 bg-[#1b1d28] border border-[#282d3e]"
+                        className="px-2.5 py-1 rounded-md text-xs text-neutral-300 bg-[#1c1f2b] border border-[#272b3b]"
                       >
                         {skill}
                       </span>
