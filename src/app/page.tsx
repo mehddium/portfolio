@@ -1,35 +1,35 @@
 "use client";
 
 import React, { useState } from "react";
-import QuickHudNav from "@/components/QuickHudNav";
-import HeroSection from "@/components/HeroSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import SkillsSection from "@/components/SkillsSection";
-import JourneySection from "@/components/JourneySection";
-import RecommendationsSection from "@/components/RecommendationsSection";
-import ContactSection from "@/components/ContactSection";
-import ResumeModal from "@/components/ResumeModal";
+import LedgerHeader from "@/components/LedgerHeader";
+import LedgerHero from "@/components/LedgerHero";
+import LedgerProjects from "@/components/LedgerProjects";
+import LedgerMatrix from "@/components/LedgerMatrix";
+import LedgerTimeline from "@/components/LedgerTimeline";
+import LedgerEndorsements from "@/components/LedgerEndorsements";
+import LedgerContact from "@/components/LedgerContact";
+import LedgerResumeModal from "@/components/LedgerResumeModal";
 
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#12141c] bg-grid-subtle text-[#f0f2f5] font-sans selection:bg-blue-500/20 selection:text-white">
-      {/* Minimalist Top Navigation */}
-      <QuickHudNav onOpenResume={() => setResumeOpen(true)} />
+    <div className="relative min-h-screen bg-[#0e1017] bg-swiss-grid text-[#f4f5f8] font-sans selection:bg-[#3b82f6]/20 selection:text-white">
+      {/* Swiss Architectural Masthead */}
+      <LedgerHeader onOpenResume={() => setResumeOpen(true)} />
 
-      {/* Main Fluid Content */}
+      {/* Main Structural Ledger Canvas */}
       <main className="w-full">
-        <HeroSection onOpenResume={() => setResumeOpen(true)} />
-        <ProjectsSection />
-        <SkillsSection />
-        <JourneySection />
-        <RecommendationsSection />
-        <ContactSection onOpenResume={() => setResumeOpen(true)} />
+        <LedgerHero onOpenResume={() => setResumeOpen(true)} />
+        <LedgerProjects />
+        <LedgerMatrix />
+        <LedgerTimeline />
+        <LedgerEndorsements />
+        <LedgerContact onOpenResume={() => setResumeOpen(true)} />
       </main>
 
-      {/* Curriculum Vitae Modal */}
-      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+      {/* Curriculum Vitae Printable Dossier */}
+      <LedgerResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 }

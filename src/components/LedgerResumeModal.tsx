@@ -6,12 +6,12 @@ import { portfolioData } from "@/data/portfolioData";
 import { X, Printer, Mail } from "lucide-react";
 import { GitHubIcon } from "@/components/Icons";
 
-interface ResumeModalProps {
+interface LedgerResumeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
+export default function LedgerResumeModal({ isOpen, onClose }: LedgerResumeModalProps) {
   const { lang } = useLanguage();
 
   useEffect(() => {
@@ -33,25 +33,25 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm animate-ledgerExpand">
       {/* Modal Container */}
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#181b26] border border-[#232635] rounded-xl shadow-2xl p-6 sm:p-10 text-[#f0f2f5] space-y-8">
+      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#0e1017] border border-[#222533] shadow-2xl p-6 sm:p-10 text-[#f4f5f8] space-y-8">
         {/* Controls */}
-        <div className="flex items-center justify-between border-b border-[#232635] pb-4">
-          <span className="text-xs uppercase tracking-wider text-blue-400 font-medium font-sans">
-            Curriculum Vitae
+        <div className="flex items-center justify-between border-b border-[#222533] pb-4">
+          <span className="text-xs font-mono uppercase tracking-wider text-[#3b82f6]">
+            CURRICULUM VITAE &amp; DOSSIER TECHNIQUE
           </span>
           <div className="flex items-center gap-3">
             <button
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#12141c] hover:bg-[#202332] border border-[#232635] text-xs font-medium text-[#f0f2f5] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#151822] hover:bg-[#1f2433] border border-[#222533] text-xs font-mono text-[#f4f5f8] transition-colors"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>{lang === "fr" ? "Imprimer / PDF" : "Print / PDF"}</span>
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg hover:bg-[#12141c] text-[#8e94a5] hover:text-[#f0f2f5] transition-colors"
+              className="p-1.5 hover:bg-[#151822] text-[#8b90a0] hover:text-[#f4f5f8] transition-colors"
               aria-label="Fermer"
             >
               <X className="w-5 h-5" />
@@ -62,14 +62,14 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         {/* Printable Content */}
         <div className="space-y-8">
           {/* Header */}
-          <div className="border-b border-[#232635] pb-6 space-y-3">
-            <h1 className="text-3xl font-semibold text-[#f0f2f5] tracking-tight">
+          <div className="border-b border-[#222533] pb-6 space-y-3">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#f4f5f8] tracking-tight uppercase">
               {portfolioData.profile.name}
             </h1>
-            <p className="text-sm text-[#8e94a5]">
+            <p className="text-sm font-semibold text-[#3b82f6]">
               {portfolioData.profile.role[lang]}
             </p>
-            <div className="flex flex-wrap gap-4 text-xs text-[#8e94a5] pt-1">
+            <div className="flex flex-wrap gap-4 text-xs font-mono text-[#8b90a0] pt-1">
               <span className="flex items-center gap-1">
                 <Mail className="w-3.5 h-3.5" /> {portfolioData.profile.email}
               </span>
@@ -77,33 +77,33 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 href={portfolioData.profile.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-[#f0f2f5] transition-colors"
+                className="flex items-center gap-1 hover:text-[#f4f5f8] transition-colors"
               >
                 <GitHubIcon className="w-3.5 h-3.5 fill-current" /> github.com/{portfolioData.profile.githubUsername}
               </a>
               <span>{portfolioData.profile.location}</span>
             </div>
-            <p className="text-sm text-[#8e94a5] font-light leading-relaxed pt-2">
+            <p className="text-sm text-[#8b90a0] font-light leading-relaxed pt-2">
               {portfolioData.profile.bio[lang].intro}
             </p>
           </div>
 
           {/* Education & Experience */}
           <div className="space-y-4">
-            <h2 className="text-xs uppercase tracking-wider text-blue-400 font-semibold font-sans">
-              {lang === "fr" ? "Formation & Parcours" : "Education & Journey"}
+            <h2 className="text-xs font-mono uppercase tracking-wider text-[#3b82f6]">
+              {lang === "fr" ? "Formation & Parcours Universitaire" : "Education & University Milestones"}
             </h2>
-            <div className="space-y-4 divide-y divide-[#232635]">
+            <div className="space-y-4 divide-y divide-[#222533]">
               {portfolioData.timeline.map((item) => (
                 <div key={item.id} className="pt-4 first:pt-0 space-y-1">
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                    <h3 className="text-sm font-semibold text-[#f0f2f5]">
+                    <h3 className="text-sm font-bold text-[#f4f5f8]">
                       {item.translations[lang].title}
                     </h3>
-                    <span className="text-xs font-mono text-[#8e94a5]">{item.period}</span>
+                    <span className="text-xs font-mono text-[#8b90a0]">{item.period}</span>
                   </div>
-                  <p className="text-xs text-[#8e94a5]">{item.translations[lang].institution}</p>
-                  <p className="text-xs text-[#8e94a5] font-light leading-relaxed pt-1">
+                  <p className="text-xs text-blue-400">{item.translations[lang].institution}</p>
+                  <p className="text-xs text-[#8b90a0] font-light leading-relaxed pt-1">
                     {item.translations[lang].description}
                   </p>
                 </div>
@@ -112,21 +112,21 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           </div>
 
           {/* Projects Summary */}
-          <div className="space-y-4 pt-4 border-t border-[#232635]">
-            <h2 className="text-xs uppercase tracking-wider text-blue-400 font-semibold font-sans">
-              {lang === "fr" ? "Projets d'Ingénierie" : "Key Engineering Projects"}
+          <div className="space-y-4 pt-4 border-t border-[#222533]">
+            <h2 className="text-xs font-mono uppercase tracking-wider text-[#3b82f6]">
+              {lang === "fr" ? "Projets d'Ingénierie Clés" : "Key Engineering Deliverables"}
             </h2>
-            <div className="space-y-4 divide-y divide-[#232635]">
+            <div className="space-y-4 divide-y divide-[#222533]">
               {portfolioData.projects.map((proj) => (
                 <div key={proj.id} className="pt-4 first:pt-0 space-y-1">
                   <div className="flex items-baseline justify-between">
-                    <h3 className="text-sm font-semibold text-[#f0f2f5]">{proj.title}</h3>
-                    <span className="text-xs font-mono text-[#8e94a5]">{proj.year}</span>
+                    <h3 className="text-sm font-bold text-[#f4f5f8]">{proj.title}</h3>
+                    <span className="text-xs font-mono text-[#8b90a0]">{proj.year}</span>
                   </div>
-                  <p className="text-xs text-[#8e94a5] font-light leading-relaxed">
+                  <p className="text-xs text-[#8b90a0] font-light leading-relaxed">
                     {proj.translations[lang].description}
                   </p>
-                  <p className="text-[11px] text-neutral-400 pt-1">
+                  <p className="text-[11px] font-mono text-neutral-400 pt-1">
                     {proj.technologies.join(" · ")}
                   </p>
                 </div>
@@ -135,15 +135,15 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           </div>
 
           {/* Skills */}
-          <div className="space-y-4 pt-4 border-t border-[#232635]">
-            <h2 className="text-xs uppercase tracking-wider text-blue-400 font-semibold font-sans">
-              {lang === "fr" ? "Compétences Techniques" : "Technical Skills"}
+          <div className="space-y-4 pt-4 border-t border-[#222533]">
+            <h2 className="text-xs font-mono uppercase tracking-wider text-[#3b82f6]">
+              {lang === "fr" ? "Compétences Techniques" : "Technical Matrix"}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               {portfolioData.skillCategories.map((group, idx) => (
                 <div key={idx} className="space-y-1">
-                  <h3 className="font-medium text-[#f0f2f5]">{group.title[lang]}</h3>
-                  <p className="text-[#8e94a5] font-light">{group.skills.join(", ")}</p>
+                  <h3 className="font-semibold text-[#f4f5f8]">{group.title[lang]}</h3>
+                  <p className="text-[#8b90a0] font-mono text-[11px]">{group.skills.join(", ")}</p>
                 </div>
               ))}
             </div>
